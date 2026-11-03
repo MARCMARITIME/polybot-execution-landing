@@ -27,7 +27,7 @@ section{padding:48px 0}
 .hero{padding:40px 0 4px;max-width:760px}
 h1{font-size:clamp(40px,7vw,72px);line-height:1;letter-spacing:-.03em;margin:0 0 16px;font-weight:800;text-wrap:balance}
 h1 em{font-style:normal;color:var(--accent)}
-.sub{color:var(--muted);font-size:20px;max-width:38ch;margin:0 0 22px}
+.sub{color:var(--muted);font-size:20px;max-width:46ch;margin:0 0 22px}
 .cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 .ticks{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:14px}
 .ticks span::before{content:"✓ ";color:var(--accent)}
@@ -119,19 +119,17 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
 
 <section class="hero">
   <h1>Our bot. <em>Your strategy.</em></h1>
-  <p class="sub">A fast, guarded trading bot, already built and co-located next to Kalshi and Polymarket. Plug in your strategy in one sentence.</p>
+  <p class="sub">The bot is ours: fast, guarded, co-located next to Kalshi and Polymarket. The strategy is yours: one sentence, from the web app or from Claude, Cursor and Codex over MCP.</p>
   <div class="cta"><button class="btn" data-plan="Plug in my strategy">Plug in my strategy →</button></div>
-  <div class="ticks"><span>Your keys, your account</span><span>Cancel anytime</span><span>Founding cohort: 3 months at half price</span></div>
+  <div class="ticks"><span>Your keys, your account</span><span>Cancel anytime</span></div>
 </section>
 
 <section id="demo">
   <div class="demo" id="dm">
-    <div class="clients" id="clients"><span>From</span><button class="on" data-c="Claude">Claude</button><button data-c="Codex">Codex</button><button data-c="Cursor">Cursor</button><button data-c="Web app">the web app</button><span class="mcp">· Claude, Codex and Cursor talk to Polybot over <b>MCP</b></span></div>
+    <div class="clients" id="clients"><span>From</span><button class="on" data-c="Claude">Claude</button><button data-c="Codex">Codex</button><button data-c="Cursor">Cursor</button><button data-c="Web app">the web app</button><span class="mcp">Claude, Cursor and Codex connect over <b>MCP</b></span></div>
     <div class="screen">
       <div class="me" id="typed"></div>
-      <div class="bot a">Plugged in. Running on <b>Polybot</b> next to Kalshi and Polymarket, $50 a day, kill switch armed. A 4-point gap closes in milliseconds: add the <b>institutional fibre feed</b>? $49 a day, at cost.</div>
-      <div class="me yes a done">Yes.</div>
-      <div class="bot a">Fibre on. Here are your <b>results</b> after 2 days of paper trading:</div>
+      <div class="bot a">Plugged in. Your strategy now runs on <b>Polybot</b>, co-located next to Kalshi and Polymarket, $50 a day, kill switch armed. Here are your <b>results</b> after 2 days of paper trading:</div>
       <div class="res a">
         <div class="pnl">
           <div class="k">P&amp;L · 2 days of paper trading</div>
@@ -155,6 +153,7 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
 </section>
 
 <section>
+  <div class="eyebrow">Your strategy, in one sentence</div>
   <div class="grid3">
     <div class="chip"><b>WEATHER</b>“Buy YES on tomorrow’s NYC rain when the forecast says 70 %+ and the price is under 0.55.”</div>
     <div class="chip"><b>ELECTIONS</b>“When a state’s count crosses my threshold, buy that candidate up to $200, then stop.”</div>
@@ -164,8 +163,8 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
 
 <section id="mcp">
   <div class="eyebrow">MCP</div>
-  <h2>Talk to Polybot from Claude, Codex or Cursor.</h2>
-  <p class="lead">One entry in your assistant’s config. Seven tools. Your exchange keys never leave Polybot.</p>
+  <h2>Plug in from Claude, Cursor or Codex.</h2>
+  <p class="lead">One entry in your assistant’s config, seven tools, and your assistant writes, tests and deploys the strategy on our bot. Your exchange keys never leave Polybot.</p>
   <div class="grid2">
     <pre>{
   "mcpServers": {
@@ -282,7 +281,7 @@ For agents: <a href="llms.txt">llms.txt</a> · <a href=".well-known/mcp.json">mc
     function type(){if(i<=txt.length){typed.textContent=txt.slice(0,i);i++;at(38,type);}else{typed.classList.add('done');at(1200,rest);}}
     function rest(){
       items.forEach(function(x){
-        var d=x.classList.contains('bot')?2600:x.classList.contains('yes')?1800:x.classList.contains('res')?3200:1200;
+        var d=x.classList.contains('bot')?2200:x.classList.contains('res')?3400:1200;
         t+=d;
         (function(x,tt){at(tt,function(){x.classList.add('on');if(x===go)go.classList.add('on');});})(x,t);
       });
