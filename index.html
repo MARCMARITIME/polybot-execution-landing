@@ -48,6 +48,7 @@ tr:last-child td{border-bottom:0}
 .live b{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block}
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;min-width:0;display:grid;gap:8px;align-content:start}
 .card .num{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.12em}
 .card h3{margin:0;font-size:18px;font-weight:700}
@@ -81,7 +82,7 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
 pre{font-family:var(--mono);font-size:13px;white-space:pre-wrap;word-break:break-word;background:var(--bg);padding:12px;margin:0;border-radius:8px;border:1px solid var(--line)}
 .addr{font-family:var(--mono);color:var(--accent);user-select:all}
 .ok{color:var(--pos);font-size:14px}
-@media (max-width:860px){.hero{grid-template-columns:1fr}.stats,.grid4{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:1fr}}
+@media (max-width:860px){.hero{grid-template-columns:1fr}.stats,.grid4{grid-template-columns:repeat(2,1fr)}.grid3,.grid2{grid-template-columns:1fr}}
 @media (max-width:480px){.stats,.grid4{grid-template-columns:1fr}nav ul{display:none}section{padding:44px 0}}
 @media (prefers-reduced-motion:no-preference){.btn{transition:filter .15s}.btn:hover{filter:brightness(1.1)}}
 </style>
@@ -89,7 +90,7 @@ pre{font-family:var(--mono);font-size:13px;white-space:pre-wrap;word-break:break
 <div class="wrap">
 <nav>
   <div class="logo"><i></i>Polybot</div>
-  <ul><li><a href="#features">Features</a></li><li><a href="#how">How it works</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul>
+  <ul><li><a href="#features">Features</a></li><li><a href="#how">How it works</a></li><li><a href="#mcp">MCP</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul>
   <div style="display:flex;gap:10px"><button class="btn ghost sm" data-plan="Sign in">Sign in</button><button class="btn sm" data-plan="Get started (Free)">Get started</button></div>
 </nav>
 
@@ -144,6 +145,29 @@ pre{font-family:var(--mono);font-size:13px;white-space:pre-wrap;word-break:break
   </div>
 </section>
 
+<section id="mcp">
+  <div class="eyebrow">Bring your own assistant</div>
+  <h2>Already talk to Claude, Codex or Cursor? So does Polybot.</h2>
+  <p class="lead">Add the Polybot MCP server to the assistant you already use. It gets seven tools and nothing else: it can design, backtest, paper-trade and deploy your bots, read every fill, pause or kill them. Your exchange keys never leave Polybot, and your assistant only sees what you allow.</p>
+  <div class="grid2">
+    <div class="card"><div class="num">ONE LINE IN YOUR CONFIG</div><pre>{
+  "mcpServers": {
+    "polybot": {
+      "url": "https://mcp.polybot.run/v1",
+      "headers": { "Authorization": "Bearer &lt;your Polybot token&gt;" }
+    }
+  }
+}</pre><p>Works with Claude Desktop and Claude Code, OpenAI Codex, Cursor, and any MCP-capable client.</p></div>
+    <div class="card"><div class="num">SEVEN TOOLS, SCOPED BY YOU</div><pre>create_bot     describe a rule, get a bot
+backtest       run it on real order books
+paper_trade    live prices, no money
+deploy         go live under your caps
+pause          stop placing, keep positions
+kill           cancel everything, now
+get_fills      every fill, priced +1 s later</pre><p>Then it is a conversation: “Backtest this on September, show me the chart, deploy it with a $20 daily cap.” Your assistant does the clicking.</p></div>
+  </div>
+</section>
+
 <section>
   <div class="eyebrow">What traders build</div>
   <h2>Six bots you can describe before your coffee cools.</h2>
@@ -167,10 +191,10 @@ pre{font-family:var(--mono);font-size:13px;white-space:pre-wrap;word-break:break
       <ul><li>Paper trading on live prices</li><li>1 bot</li><li>Backtests on real order books</li><li>Fill and latency log</li></ul>
       <button class="btn ghost" data-plan="Free — $0">Start free</button></div>
     <div class="price pop"><div class="badge">POPULAR</div><div class="tier">STARTER</div><div class="amt">$19 <small>/month</small></div>
-      <ul><li>Everything in Free</li><li>Live trading, one venue</li><li>5 live bots</li><li>Daily caps and kill switch</li></ul>
+      <ul><li>Everything in Free</li><li>Live trading, one venue</li><li>5 live bots</li><li>Daily caps and kill switch</li><li>MCP server for your assistant</li></ul>
       <button class="btn" data-plan="Starter — $19/month">Upgrade</button></div>
     <div class="price"><div class="tier">PRO</div><div class="amt">$49 <small>/month</small></div>
-      <ul><li>Everything in Starter</li><li>Kalshi and Polymarket</li><li>25 live bots</li><li>Co-located Binance/Coinbase feeds</li></ul>
+      <ul><li>Everything in Starter</li><li>Kalshi and Polymarket</li><li>25 live bots</li><li>Co-located Binance/Coinbase feeds</li><li>MCP server, unlimited tokens</li></ul>
       <button class="btn ghost" data-plan="Pro — $49/month">Go pro</button></div>
   </div>
   <p class="lead" style="margin-top:16px;font-size:14px">Need more speed? Institutional fibre market-data line on request, billed at cost.</p>
@@ -183,6 +207,7 @@ pre{font-family:var(--mono);font-size:13px;white-space:pre-wrap;word-break:break
   <details><summary>Do you hold my funds?</summary><p>No. On Kalshi you give an API key scoped to trading; on Polymarket you connect your own wallet. We place and cancel orders in your name. You can revoke access at any time.</p></details>
   <details><summary>Will the bot make money?</summary><p>That depends on your rule, and Polybot is built to find out fast: backtest on real order books in minutes, paper-trade on live prices for free, then go live with hard limits. We ran 170 strategies through this exact loop ourselves. Execution, speed and guards are on us; the edge is yours.</p></details>
   <details><summary>How fast is it?</summary><p>As fast as the venue allows: your bot is co-located in the same cloud region as the exchange’s matching engine, so the round trip is the exchange’s own, not the internet’s. Our code adds under 2 ms, and an alarm fires if it ever does not. For the last microseconds, an institutional fibre market-data line is available on request, billed at cost.</p></details>
+  <details><summary>Can I use it from Claude or Codex?</summary><p>Yes. Polybot ships an MCP server: add one entry to your assistant’s config and it can create, backtest, deploy, pause and kill your bots and read your fills, through seven scoped tools. Your exchange keys stay on Polybot; the assistant never sees them. Available on Starter and Pro.</p></details>
   <details><summary>Which markets?</summary><p>Kalshi and Polymarket 15-minute and hourly crypto markets first (BTC, ETH, SOL, XRP, DOGE, BNB), where our data and backtests live. Other markets on request.</p></details>
 </section>
 
