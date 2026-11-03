@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Polybot</title>
-<meta name="description" content="Say your bet in one sentence. Polybot turns it into a bot and runs it next to Kalshi and Polymarket.">
+<meta name="description" content="Say your bet. Polybot turns it into a bot and runs it next to Kalshi and Polymarket.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-:root{--bg:#0b0d10;--bg2:#12151a;--card:#161a20;--line:#242a33;--fg:#f2f4f7;--muted:#8b94a3;--accent:#39d2c0;--accent-ink:#06211e;--pos:#4ade80;--neg:#f87171;
+:root{--bg:#0b0d10;--bg2:#12151a;--card:#161a20;--line:#242a33;--fg:#f2f4f7;--muted:#8b94a3;--accent:#39d2c0;--accent-ink:#06211e;--pos:#4ade80;
 --sans:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;color-scheme:dark}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.55;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -21,11 +21,11 @@ nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;color:var(--mute
 .btn.ghost{background:transparent;color:var(--fg);border-color:var(--line)}
 .btn.sm{padding:8px 14px;font-size:14px}
 .btn:focus,input:focus,textarea:focus,summary:focus{outline:2px solid var(--accent);outline-offset:2px}
-section{padding:56px 0}
-.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding:48px 0 32px}
-h1{font-size:clamp(38px,6vw,64px);line-height:1.02;letter-spacing:-.03em;margin:0 0 18px;font-weight:800;text-wrap:balance}
+section{padding:52px 0}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding:44px 0 28px}
+h1{font-size:clamp(38px,6vw,64px);line-height:1.02;letter-spacing:-.03em;margin:0 0 16px;font-weight:800;text-wrap:balance}
 h1 em{font-style:normal;color:var(--accent)}
-.sub{color:var(--muted);font-size:18px;max-width:44ch;margin:0 0 22px}
+.sub{color:var(--muted);font-size:18px;max-width:40ch;margin:0 0 20px}
 .cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
 .ticks{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:13px}
 .ticks span::before{content:"✓ ";color:var(--accent)}
@@ -33,23 +33,19 @@ h1 em{font-style:normal;color:var(--accent)}
 .prompt .bar{display:flex;gap:6px}.prompt .bar i{width:9px;height:9px;border-radius:50%;background:var(--line);display:block}
 .prompt .ex{font-family:var(--mono);font-size:13px;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
 .prompt .in{display:flex;gap:8px}.prompt input{flex:1;min-width:0;font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px}
-h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.02em;line-height:1.1;margin:0 0 10px;font-weight:800;text-wrap:balance}
+h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.02em;line-height:1.1;margin:0 0 18px;font-weight:800;text-wrap:balance}
 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
-.lead{color:var(--muted);max-width:60ch;margin:0 0 28px}
+.lead{color:var(--muted);max-width:60ch;margin:-6px 0 24px}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .stats div{background:var(--bg2);padding:18px;min-width:0}
 .stats .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .stats .v{font-size:32px;font-weight:800;letter-spacing:-.02em;margin-top:4px;line-height:1.1}
 .stats .v.acc{color:var(--accent)}
 .stats .n{font-size:12px;color:var(--muted);margin-top:6px}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0;display:grid;gap:8px;align-content:start}
-.card .num{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.12em}
-.card h3{margin:0;font-size:18px;font-weight:700}
-.card p{margin:0;color:var(--muted);font-size:15px}
-.price{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;display:grid;gap:14px;min-width:0;position:relative}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;min-width:0;color:var(--muted);font-size:15px}
+.chip b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--accent);margin-bottom:6px;font-weight:500}
+.price{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:14px;min-width:0;position:relative}
 .price.pop{border-color:var(--accent)}
 .price .badge{position:absolute;top:-12px;right:18px;background:var(--accent);color:var(--accent-ink);font-family:var(--mono);font-size:11px;letter-spacing:.1em;padding:4px 10px;border-radius:999px;font-weight:600}
 .price .tier{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--muted)}
@@ -62,187 +58,145 @@ summary{cursor:pointer;font-weight:700;font-size:17px;list-style:none;display:fl
 summary::after{content:"+";color:var(--accent);font-family:var(--mono)}
 details[open] summary::after{content:"–"}
 details p{color:var(--muted);margin:10px 0 0;max-width:70ch}
-.final{text-align:center;background:linear-gradient(180deg,var(--bg2),var(--bg));border:1px solid var(--line);border-radius:16px;padding:48px 24px}
+.final{text-align:center;background:linear-gradient(180deg,var(--bg2),var(--bg));border:1px solid var(--line);border-radius:16px;padding:44px 24px}
 footer{color:var(--muted);font-size:13px;padding:28px 0 48px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-pre{font-family:var(--mono);font-size:13px;white-space:pre-wrap;word-break:break-word;background:var(--bg);padding:12px;margin:0;border-radius:8px;border:1px solid var(--line)}
 /* demo */
 .demo{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
 .demo .steps{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line)}
 .demo .steps div{padding:12px 16px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-right:1px solid var(--line);transition:color .3s,background .3s}
 .demo .steps div:last-child{border-right:0}
 .demo .steps div.on{color:var(--accent);background:var(--bg2)}
-.demo .screen{padding:22px;min-height:300px;display:grid;gap:14px;align-content:start;font-family:var(--mono);font-size:14px}
-.demo .typed{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-height:52px;color:var(--fg);font-size:15px}
-.demo .typed::after{content:"";display:inline-block;width:8px;height:17px;background:var(--accent);vertical-align:-3px;margin-left:2px;animation:blink 1s steps(2) infinite}
-.demo .typed.done::after{display:none}
-.demo .ln{display:flex;gap:12px;align-items:baseline;color:var(--muted);opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s}
-.demo .ln.on{opacity:1;transform:none}
-.demo .ln b{color:var(--accent);font-weight:500;min-width:16px}
-.demo .ln .t{color:var(--fg)}
-.demo .ln .ok{color:var(--pos)}
-.demo .ln .no{color:var(--muted)}
-.demo .row{display:grid;grid-template-columns:52px 1fr 1fr 56px 1fr;gap:12px;font-size:13px;color:var(--muted);opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s;padding:8px 0;border-bottom:1px solid var(--line)}
-.demo .row.on{opacity:1;transform:none}
+.demo .screen{padding:20px 22px;min-height:360px;display:grid;gap:10px;align-content:start;font-family:var(--mono);font-size:14px}
+.demo .me{justify-self:end;max-width:85%;background:var(--bg);border:1px solid var(--line);border-radius:12px 12px 2px 12px;padding:12px 14px;color:var(--fg);font-size:14px;min-height:20px}
+.demo .me::after{content:"";display:inline-block;width:8px;height:16px;background:var(--accent);vertical-align:-3px;margin-left:2px;animation:blink 1s steps(2) infinite}
+.demo .me.done::after{display:none}
+.demo .me.yes{min-height:0}
+.demo .tool{font-size:12px;color:var(--muted)}
+.demo .tool b{color:var(--accent);font-weight:500}
+.demo .ln{display:flex;gap:10px;align-items:baseline;color:var(--muted);font-size:13px}
+.demo .ln b{color:var(--accent);font-weight:500;min-width:14px}
+.demo .ln .t{color:var(--fg);min-width:78px}
+.demo .ask{background:var(--bg2);border:1px solid var(--line);border-radius:12px 12px 12px 2px;padding:12px 14px;color:var(--fg);font-size:14px;max-width:85%}
+.demo .row{display:grid;grid-template-columns:110px 1fr 1fr;gap:12px;font-size:13px;color:var(--muted);padding:7px 0;border-top:1px solid var(--line)}
 .demo .row .t{color:var(--fg)}
-.demo .go{justify-self:start;opacity:0;transition:opacity .4s}
-.demo .go.on{opacity:1;animation:pulse 1.6s ease-in-out infinite}
-.demo .hint{font-family:var(--sans);font-size:13px;color:var(--muted)}
+.demo .ok{color:var(--pos)}
+.demo .go{justify-self:start;margin-top:4px}
+.demo .go.on{animation:pulse 1.6s ease-in-out infinite}
+.demo .hint{font-family:var(--sans);font-size:13px;color:var(--muted);margin-top:4px}
+.demo .a{opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s}
+.demo .a.on{opacity:1;transform:none}
 @keyframes blink{to{visibility:hidden}}
 @keyframes pulse{50%{box-shadow:0 0 0 8px rgba(57,210,192,.18)}}
 .modal[hidden]{display:none}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-left,0px));z-index:20}
 .modal .box{background:var(--card);border:1px solid var(--line);border-radius:14px;max-width:520px;width:100%;padding:26px;display:grid;gap:12px;max-height:90vh;overflow:auto}
-.modal h2{font-size:24px}
+.modal h2{font-size:24px;margin-bottom:6px}
 .modal p{margin:0;color:var(--muted)}
 label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
 .modal input,.modal textarea{font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:11px;width:100%}
 .out{display:none;border-top:1px solid var(--line);padding-top:14px}.out.show{display:grid}
 .okmsg{color:var(--pos)}
-@media (max-width:860px){.hero{grid-template-columns:1fr}.stats,.grid4{grid-template-columns:repeat(2,1fr)}.grid3,.grid2{grid-template-columns:1fr}.demo .row{grid-template-columns:52px 1fr 70px;}.demo .row .s,.demo .row .p{display:none}}
-@media (max-width:480px){.stats,.grid4{grid-template-columns:1fr}nav ul{display:none}section{padding:40px 0}.demo .steps div{padding:10px 8px;font-size:10px}}
+@media (max-width:860px){.hero{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:1fr}.demo .row{grid-template-columns:1fr 1fr}.demo .row .s{display:none}}
+@media (max-width:480px){.stats{grid-template-columns:1fr}nav ul{display:none}section{padding:38px 0}.demo .steps div{padding:10px 8px;font-size:10px}.demo .me,.demo .ask{max-width:100%}}
 @media (prefers-reduced-motion:no-preference){.btn{transition:filter .15s}.btn:hover{filter:brightness(1.1)}}
-@media (prefers-reduced-motion:reduce){.demo .ln,.demo .row,.demo .go{opacity:1;transform:none;animation:none}.demo .typed::after{display:none}}
+@media (prefers-reduced-motion:reduce){.demo .a{opacity:1;transform:none}.demo .go.on{animation:none}.demo .me::after{display:none}}
 </style>
 </head>
 <body>
 <div class="wrap">
 <nav>
   <div class="logo"><i></i>Polybot</div>
-  <ul><li><a href="#demo">Demo</a></li><li><a href="#how">How it works</a></li><li><a href="#mcp">MCP</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul>
+  <ul><li><a href="#demo">Demo</a></li><li><a href="#examples">Examples</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul>
   <div style="display:flex;gap:10px"><button class="btn ghost sm" data-plan="Sign in">Sign in</button><button class="btn sm" data-plan="Get started">Get started</button></div>
 </nav>
 
 <section class="hero">
   <div>
     <h1>Say your bet. <em>Polybot runs it.</em></h1>
-    <p class="sub">One sentence becomes a bot that trades next to Kalshi and Polymarket. Weather, elections, sports, crypto. Your keys, your account.</p>
+    <p class="sub">One sentence, from the web app or your own AI assistant. A bot next to Kalshi and Polymarket. Your keys, your account.</p>
     <div class="cta"><button class="btn" data-plan="Build my first bot">Build your first bot →</button><a class="btn ghost" href="#demo" style="text-decoration:none;display:inline-block">Watch the demo</a></div>
     <div class="ticks"><span>Cancel anytime</span><span>Paper trading included</span><span>Founding cohort: 3 months at half price</span></div>
   </div>
   <div class="prompt">
     <div class="bar"><i></i><i></i><i></i></div>
-    <div class="ex">Buy YES on tomorrow’s NYC rain market when the NWS forecast says 70 %+ and the price is under 0.55. Max $40 a day.</div>
+    <div class="ex">Buy YES on tomorrow’s NYC rain market when the forecast says 70 %+ and the price is under 0.55. Max $40 a day.</div>
     <form class="in" id="hp" novalidate><input id="hq" placeholder="Describe your bot…" aria-label="Describe your bot"><button class="btn" type="submit">↵</button></form>
   </div>
 </section>
 
 <div class="stats">
   <div><div class="k">Markets</div><div class="v">Any</div><div class="n">everything on Kalshi and Polymarket</div></div>
-  <div><div class="k">Signals</div><div class="v">Yours</div><div class="n">forecasts, news, polls, scores, prices</div></div>
-  <div><div class="k">Sentence to bot</div><div class="v acc">Minutes</div><div class="n">type, check, paper-trade, go live</div></div>
+  <div><div class="k">Signals</div><div class="v">Yours</div><div class="n">prices, forecasts, news, polls, scores</div></div>
   <div><div class="k">Placement</div><div class="v acc">Co-located</div><div class="n">next to the exchange</div></div>
+  <div><div class="k">Guards</div><div class="v acc">Always</div><div class="n">daily cap, kill switch, journal</div></div>
 </div>
 
 <section id="demo">
   <div class="eyebrow">Demo</div>
-  <h2>One sentence. One bot. Watch.</h2>
+  <h2>From your assistant to a live bot.</h2>
   <div class="demo" id="dm">
-    <div class="steps"><div id="s1" class="on">1 · You say it</div><div id="s2">2 · Polybot builds it</div><div id="s3">3 · It runs</div></div>
+    <div class="steps"><div id="s1" class="on">1 · You, in Claude</div><div id="s2">2 · Polybot builds</div><div id="s3">3 · It runs</div></div>
     <div class="screen">
-      <div class="typed" id="typed"></div>
-      <div id="build">
-        <div class="ln"><b>✓</b><span class="t">Market</span><span>Kalshi · NYC high above 60°F tomorrow</span></div>
-        <div class="ln"><b>✓</b><span class="t">Signal</span><span>National Weather Service forecast</span></div>
-        <div class="ln"><b>✓</b><span class="t">Rule</span><span>forecast ≥ strike + 5°F and price &lt; 0.60</span></div>
-        <div class="ln"><b>✓</b><span class="t">Guards</span><span>$50 a day · kill switch</span></div>
-        <div class="ln"><b>✓</b><span class="t">Mode</span><span class="ok">paper trading on live prices</span></div>
-      </div>
-      <div id="run">
-        <div class="row"><span>07:02</span><span class="t">NYC high &gt; 60°F</span><span class="s">forecast 67°F (+7)</span><span class="p">0.54</span><span class="ok">Bought YES · $27</span></div>
-        <div class="row"><span>07:02</span><span class="t">Chicago high &gt; 55°F</span><span class="s">forecast 58°F (+3)</span><span class="p">0.47</span><span class="no">Passed · margin too small</span></div>
-        <div class="row"><span>07:02</span><span class="t">Miami high &gt; 84°F</span><span class="s">forecast 90°F (+6)</span><span class="p">0.63</span><span class="no">Passed · price too high</span></div>
-        <div class="row"><span>11:30</span><span class="t">Miami high &gt; 84°F</span><span class="s">forecast 91°F (+7)</span><span class="p">0.58</span><span class="ok">Bought YES · $23 · cap reached</span></div>
-        <button class="btn go" id="go" data-plan="Go live (demo)">Go live →</button>
-      </div>
-      <div class="hint">Illustration. Swap the weather for anything with a price.</div>
+      <div class="me" id="typed"></div>
+      <div class="tool a">Claude → <b>polybot.create_bot</b></div>
+      <div class="ln a"><b>✓</b><span class="t">Markets</span><span>Kalshi × Polymarket · same BTC 15-min window</span></div>
+      <div class="ln a"><b>✓</b><span class="t">Signal</span><span>both order books, live</span></div>
+      <div class="ln a"><b>✓</b><span class="t">Rule</span><span>gap ≥ 4 points → buy the cheap side</span></div>
+      <div class="ln a"><b>✓</b><span class="t">Guards</span><span>$50 a day · kill switch</span></div>
+      <div class="ln a"><b>✓</b><span class="t">Placement</span><span>co-located, both venues</span></div>
+      <div class="ask a">A 4-point gap closes in milliseconds. Add the institutional fibre feed for the last microseconds? At cost, $49 a day.</div>
+      <div class="me yes a done" id="yes">Yes.</div>
+      <div class="tool a">Claude → <b>polybot.paper_trade</b> · 2 days · 11 fills · <b>polybot.deploy</b></div>
+      <div class="row a"><span>09:14:02.113</span><span class="t">gap 5 pts · Polymarket cheaper</span><span class="ok">Bought UP 0.41 · $50 · 3 ms</span></div>
+      <div class="row a"><span>09:31:40.870</span><span class="t">gap 3 pts</span><span>Passed · under 4</span></div>
+      <div class="row a"><span>10:05:11.004</span><span class="t">gap 6 pts · Kalshi cheaper</span><span class="ok">Bought YES 0.38 · $50 · cap reached</span></div>
+      <button class="btn go a" id="go" data-plan="Go live (demo)">Go live →</button>
+      <div class="hint">Illustration. Also from Codex, Cursor, or the web app. Swap the gap for weather, a headline, a score.</div>
     </div>
   </div>
 </section>
 
-<section id="features">
-  <div class="eyebrow">Built in</div>
-  <h2>Runs while you sleep.</h2>
-  <div class="grid4">
-    <div class="card"><div class="num">BUILD</div><h3>Plain English</h3><p>Type it. Read the rule back. Done.</p></div>
-    <div class="card"><div class="num">EXECUTE</div><h3>Next to the exchange</h3><p>Co-located. The lowest latency the venue allows.</p></div>
-    <div class="card"><div class="num">GUARD</div><h3>Hard limits</h3><p>Daily cap, loss stop, kill switch. Never re-arms itself.</p></div>
-    <div class="card"><div class="num">REPORT</div><h3>A journal</h3><p>Every decision written down, bought or passed, and why.</p></div>
-  </div>
-</section>
-
-<section id="how">
-  <div class="eyebrow">How it works</div>
-  <h2>Three steps.</h2>
-  <div class="grid3">
-    <div class="card"><div class="num">01</div><h3>Connect</h3><p>Kalshi API key or Polymarket wallet. Funds stay in your account.</p></div>
-    <div class="card"><div class="num">02</div><h3>Describe</h3><p>One sentence. Polybot writes the rule and shows it to you.</p></div>
-    <div class="card"><div class="num">03</div><h3>Run</h3><p>Paper first. Live when you say so. Kill switch any time.</p></div>
-  </div>
-</section>
-
-<section id="mcp">
-  <div class="eyebrow">MCP</div>
-  <h2>Use it from Claude, Codex or Cursor.</h2>
-  <p class="lead">Seven tools for your assistant. Your exchange keys never leave Polybot.</p>
-  <div class="grid2">
-    <div class="card"><div class="num">YOUR CONFIG</div><pre>{
-  "mcpServers": {
-    "polybot": {
-      "url": "https://mcp.polybot.run/v1",
-      "headers": { "Authorization": "Bearer &lt;token&gt;" }
-    }
-  }
-}</pre></div>
-    <div class="card"><div class="num">TOOLS</div><pre>create_bot    backtest    paper_trade
-deploy        pause       kill
-get_fills</pre><p>“Backtest this on September, then deploy it with a $20 daily cap.”</p></div>
-  </div>
-</section>
-
-<section>
+<section id="examples">
   <div class="eyebrow">Examples</div>
   <h2>Six bots, six sentences.</h2>
   <div class="grid3">
-    <div class="card"><div class="num">CRYPTO</div><p>“Buy UP when Binance is up 0.10 % in 30 s and the ask is under 0.55. Max $25 per window.”</p></div>
-    <div class="card"><div class="num">WEATHER</div><p>“Buy YES on tomorrow’s NYC rain when the forecast says 70 %+ and the price is under 0.55.”</p></div>
-    <div class="card"><div class="num">RATES</div><p>“The second a wire reports the Fed decision, buy the matching side if it is under 0.90. Once.”</p></div>
-    <div class="card"><div class="num">ELECTIONS</div><p>“When a state’s count crosses my threshold, buy that candidate up to $200, then stop.”</p></div>
-    <div class="card"><div class="num">SPORTS</div><p>“Buy the leader’s NO when live win probability drops 15 points in two minutes.”</p></div>
-    <div class="card"><div class="num">TWO VENUES</div><p>“When the same market is 6 points cheaper on Kalshi than Polymarket, buy the cheap side.”</p></div>
+    <div class="chip"><b>WEATHER</b>“Buy YES on tomorrow’s NYC rain when the forecast says 70 %+ and the price is under 0.55.”</div>
+    <div class="chip"><b>CRYPTO</b>“Buy UP when Binance is up 0.10 % in 30 s and the ask is under 0.55. Max $25 per window.”</div>
+    <div class="chip"><b>RATES</b>“The second a wire reports the Fed decision, buy the matching side if it is under 0.90. Once.”</div>
+    <div class="chip"><b>ELECTIONS</b>“When a state’s count crosses my threshold, buy that candidate up to $200, then stop.”</div>
+    <div class="chip"><b>SPORTS</b>“Buy the leader’s NO when live win probability drops 15 points in two minutes.”</div>
+    <div class="chip"><b>MY MODEL</b>“Buy NO whenever the ask is 8 points under my model’s probability. Stop after 3 losses.”</div>
   </div>
 </section>
 
 <section id="pricing">
   <div class="eyebrow">Pricing</div>
   <h2>Pay for the machine, not for your wins.</h2>
-  <p class="lead">Real compute next to the exchange, at cost plus a little. No performance fee. Founding cohort: 3 months at half price.</p>
+  <p class="lead">At cost plus a little. No performance fee. Founding cohort: 3 months at half price.</p>
   <div class="grid3">
     <div class="price"><div class="tier">STARTER</div><div class="amt">$49 <small>/month</small></div>
-      <ul><li>Shared co-located host</li><li>One venue</li><li>3 live bots</li><li>Caps, kill switch, MCP</li></ul>
+      <ul><li>Shared co-located host</li><li>One venue · 3 live bots</li><li>MCP for your assistant</li></ul>
       <button class="btn ghost" data-plan="Starter — $49/month">Start</button></div>
     <div class="price pop"><div class="badge">POPULAR</div><div class="tier">PRO</div><div class="amt">$119 <small>/month</small></div>
-      <ul><li>Your own dedicated machine</li><li>Kalshi and Polymarket</li><li>10 live bots</li><li>Co-located price feeds</li></ul>
+      <ul><li>Your own dedicated machine</li><li>Both venues · 10 live bots</li><li>Co-located price feeds</li></ul>
       <button class="btn" data-plan="Pro — $119/month">Go Pro</button></div>
     <div class="price"><div class="tier">ELITE</div><div class="amt">$349 <small>/month</small></div>
-      <ul><li>Largest machine, lowest latency</li><li>25 live bots</li><li>Priority support</li><li>Institutional fibre feed on request, at cost</li></ul>
+      <ul><li>Largest machine, lowest latency</li><li>25 live bots · priority support</li><li>Institutional fibre feed at cost</li></ul>
       <button class="btn ghost" data-plan="Elite — $349/month">Go Elite</button></div>
   </div>
 </section>
 
 <section id="faq">
   <div class="eyebrow">FAQ</div>
-  <h2>Questions.</h2>
-  <details open><summary>What is Polybot?</summary><p>A sentence in, a bot out. It runs next to Kalshi and Polymarket with hard limits and writes down every decision.</p></details>
-  <details><summary>Do you hold my funds?</summary><p>No. Your account, your keys. We only place and cancel orders in your name. Revoke any time.</p></details>
+  <details open><summary>Do you hold my funds?</summary><p>No. Your account, your keys. We only place and cancel orders in your name. Revoke any time.</p></details>
   <details><summary>Which markets?</summary><p>Everything Kalshi and Polymarket list: weather, politics, economics, sports, crypto, culture.</p></details>
-  <details><summary>How fast?</summary><p>Co-located next to the exchange’s matching engine. Our code adds under 2 ms. Institutional fibre feed on request, at cost.</p></details>
+  <details><summary>How fast?</summary><p>Co-located next to the exchange’s matching engine. Our code adds under 2 ms. Fibre feed on request.</p></details>
   <details><summary>Will it make money?</summary><p>That is your rule’s job. Ours: run it fast, within your limits, and show you exactly what it did.</p></details>
 </section>
 
 <section>
   <div class="final">
     <h2>Say your bet.</h2>
-    <p class="lead" style="margin:10px auto 22px">A bot that never sleeps and never misses a kill switch.</p>
     <button class="btn" data-plan="Build my first bot (final CTA)">Build your first bot</button>
   </div>
 </section>
@@ -286,21 +240,28 @@ get_fills</pre><p>“Backtest this on September, then deploy it with a $20 daily
       .then(function(r){return r.json()}).then(function(j){if(j&&j.success)done();else fail();}).catch(fail);
   });
 
-  /* demo loop */
-  var txt='Buy YES on “NYC high temperature above 60°F tomorrow” when the NWS forecast is at least 5°F above the strike and the price is under 0.60. Max $50 a day.';
-  var typed=document.getElementById('typed'),lns=[].slice.call(document.querySelectorAll('#build .ln')),rows=[].slice.call(document.querySelectorAll('#run .row')),go=document.getElementById('go');
+  /* demo loop: 1 type → 2 build lines → question → "Yes." → 3 rows → go live → loop */
+  var txt='Build me a bot: whenever the same BTC 15-min market is 4 points cheaper on Polymarket than on Kalshi, buy the cheap side. Max $50 a day.';
+  var typed=document.getElementById('typed'),items=[].slice.call(document.querySelectorAll('#dm .a')),go=document.getElementById('go');
   var steps=[document.getElementById('s1'),document.getElementById('s2'),document.getElementById('s3')];
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,timers=[];
   function at(ms,fn){timers.push(setTimeout(fn,ms));}
   function step(i){steps.forEach(function(s,j){s.classList.toggle('on',j===i);});}
-  function reset(){timers.forEach(clearTimeout);timers=[];typed.textContent='';typed.classList.remove('done');lns.concat(rows).forEach(function(x){x.classList.remove('on');});go.classList.remove('on');step(0);}
+  function reset(){timers.forEach(clearTimeout);timers=[];typed.textContent='';typed.classList.remove('done');items.forEach(function(x){x.classList.remove('on');});go.classList.remove('on');step(0);}
   function play(){
     reset();
-    if(reduce){typed.textContent=txt;typed.classList.add('done');lns.concat(rows).forEach(function(x){x.classList.add('on');});go.classList.add('on');return;}
-    var i=0,sp=28;
-    function type(){if(i<=txt.length){typed.textContent=txt.slice(0,i);i++;at(sp,type);}else{typed.classList.add('done');at(500,build);}}
-    function build(){step(1);lns.forEach(function(l,k){at(350*k,function(){l.classList.add('on');});});at(350*lns.length+900,run);}
-    function run(){step(2);rows.forEach(function(r,k){at(700*k,function(){r.classList.add('on');});});at(700*rows.length+300,function(){go.classList.add('on');});at(700*rows.length+6000,play);}
+    if(reduce){typed.textContent=txt;typed.classList.add('done');items.forEach(function(x){x.classList.add('on');});go.classList.add('on');return;}
+    var i=0,t=0;
+    function type(){if(i<=txt.length){typed.textContent=txt.slice(0,i);i++;at(26,type);}else{typed.classList.add('done');at(500,rest);}}
+    function rest(){
+      var k=0;
+      items.forEach(function(x){
+        var d=x.classList.contains('row')?650:x.classList.contains('ask')||x.classList.contains('yes')?900:380;
+        t+=d;
+        (function(x,tt){at(tt,function(){x.classList.add('on');if(x.classList.contains('tool')&&k++===0)step(1);if(x.classList.contains('row'))step(2);if(x===go)go.classList.add('on');});})(x,t);
+      });
+      at(t+6000,play);
+    }
     at(400,type);
   }
   var started=false,dm=document.getElementById('dm');
