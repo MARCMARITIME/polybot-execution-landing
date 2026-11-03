@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Polybot</title>
 <meta name="description" content="Our bot. Your strategy. One sentence, from Claude, Codex, Cursor or the web app, and it runs next to Kalshi and Polymarket.">
+<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+<meta name="mcp-server" content="https://mcp.polybot.run/v1">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{--bg:#0b0d10;--bg2:#12151a;--card:#161a20;--line:#242a33;--fg:#f2f4f7;--muted:#8b94a3;--accent:#39d2c0;--accent-ink:#06211e;--pos:#4ade80;--neg:#f87171;
@@ -54,6 +56,7 @@ footer{color:var(--muted);font-size:13px;padding:28px 0 48px;border-top:1px soli
 .demo{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
 .demo .clients{display:flex;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap;align-items:center}
 .demo .clients span{color:var(--muted);font-size:14px;margin-right:4px}
+.demo .clients .mcp{margin-left:auto}.demo .clients .mcp b{color:var(--accent)}
 .demo .clients button{font:inherit;font-size:14px;font-weight:700;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
 .demo .clients button.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .demo .screen{padding:24px;min-height:420px;display:grid;gap:14px;align-content:start}
@@ -63,14 +66,24 @@ footer{color:var(--muted);font-size:13px;padding:28px 0 48px;border-top:1px soli
 .demo .me.yes{min-height:0;font-weight:700}
 .demo .bot{justify-self:start;max-width:92%;background:var(--bg2);border:1px solid var(--line);border-radius:14px 14px 14px 2px;padding:14px 18px;font-size:17px;line-height:1.5}
 .demo .bot b{color:var(--accent);font-weight:700}
-.demo .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.demo .kpi{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-.demo .kpi .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.demo .kpi .v{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-top:4px}
-.demo .kpi .v.pos{color:var(--pos)}
-.demo .strip{display:flex;gap:5px;flex-wrap:wrap}
-.demo .strip i{width:18px;height:18px;border-radius:4px;background:var(--pos);display:block}
-.demo .strip i.l{background:var(--neg);opacity:.8}
+.demo .res{display:grid;grid-template-columns:1.4fr 1fr;gap:12px}
+.demo .pnl,.demo .st{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.demo .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.demo .v{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-top:4px}
+.demo .v small{font-size:14px;color:var(--muted);font-weight:600;letter-spacing:0}
+.demo .v.pos{color:var(--pos);font-size:44px}
+.demo .curve{width:100%;height:90px;display:block;margin-top:10px}
+.demo .curve .fill{fill:url(#g);opacity:0;transition:opacity 1.2s .9s}
+.demo .curve .line{fill:none;stroke:var(--accent);stroke-width:3;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:520;stroke-dashoffset:520;transition:stroke-dashoffset 1.6s ease-out .3s}
+.demo .res.on .curve .line{stroke-dashoffset:0}.demo .res.on .curve .fill{opacity:1}
+.demo .side{display:grid;gap:12px}
+.demo .st{display:flex;align-items:center;gap:14px;padding:12px 16px}
+.demo .st .v{font-size:26px}
+.demo .ring{width:52px;height:52px;flex:none;transform:rotate(-90deg)}
+.demo .ring circle{fill:none;stroke-width:3.5}
+.demo .ring .bgc{stroke:var(--line)}
+.demo .ring .fgc{stroke:var(--accent);stroke-dasharray:0 100;stroke-linecap:round;transition:stroke-dasharray 1.4s ease-out .5s}
+.demo .res.on .ring .fgc{stroke-dasharray:64 100}
 .demo .go{justify-self:start}
 .demo .go.on{animation:pulse 1.6s ease-in-out infinite}
 .demo .hint{font-size:13px;color:var(--muted)}
@@ -87,7 +100,7 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
 .modal input,.modal textarea{font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:11px;width:100%}
 .out{display:none;border-top:1px solid var(--line);padding-top:14px}.out.show{display:grid}
 .okmsg{color:var(--pos)}
-@media (max-width:860px){.grid3{grid-template-columns:1fr}.demo .kpis{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:860px){.grid3{grid-template-columns:1fr}.demo .res{grid-template-columns:1fr}}
 @media (max-width:480px){nav ul{display:none}section{padding:36px 0}.demo .screen{padding:16px}.demo .me,.demo .bot{max-width:100%;font-size:16px}}
 @media (prefers-reduced-motion:no-preference){.btn{transition:filter .15s}.btn:hover{filter:brightness(1.1)}}
 @media (prefers-reduced-motion:reduce){.demo .a{opacity:1;transform:none}.demo .go.on{animation:none}.demo .me::after{display:none}}
@@ -110,19 +123,28 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
 
 <section id="demo">
   <div class="demo" id="dm">
-    <div class="clients" id="clients"><span>From</span><button class="on" data-c="Claude">Claude</button><button data-c="Codex">Codex</button><button data-c="Cursor">Cursor</button><button data-c="Web app">the web app</button></div>
+    <div class="clients" id="clients"><span>From</span><button class="on" data-c="Claude">Claude</button><button data-c="Codex">Codex</button><button data-c="Cursor">Cursor</button><button data-c="Web app">the web app</button><span class="mcp">· Claude, Codex and Cursor talk to Polybot over <b>MCP</b></span></div>
     <div class="screen">
       <div class="me" id="typed"></div>
       <div class="bot a">Plugged in. Running on <b>Polybot</b> next to Kalshi and Polymarket, $50 a day, kill switch armed. A 4-point gap closes in milliseconds: add the <b>institutional fibre feed</b>? $49 a day, at cost.</div>
       <div class="me yes a done">Yes.</div>
       <div class="bot a">Fibre on. Here are your <b>results</b> after 2 days of paper trading:</div>
-      <div class="kpis a">
-        <div class="kpi"><div class="k">Win rate</div><div class="v pos">64 %</div></div>
-        <div class="kpi"><div class="k">P&amp;L</div><div class="v pos">+$86</div></div>
-        <div class="kpi"><div class="k">Fills</div><div class="v">14</div></div>
-        <div class="kpi"><div class="k">Reaction</div><div class="v">3 ms</div></div>
+      <div class="res a">
+        <div class="pnl">
+          <div class="k">P&amp;L · 2 days of paper trading</div>
+          <div class="v pos">+$86</div>
+          <svg class="curve" viewBox="0 0 320 90" preserveAspectRatio="none" aria-hidden="true">
+            <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#39d2c0" stop-opacity=".35"/><stop offset="1" stop-color="#39d2c0" stop-opacity="0"/></linearGradient></defs>
+            <path class="fill" d="M0 78 L24 70 L48 74 L72 58 L96 50 L120 56 L144 36 L168 42 L192 28 L216 33 L240 18 L264 24 L288 12 L320 6 L320 90 L0 90 Z"/>
+            <path class="line" d="M0 78 L24 70 L48 74 L72 58 L96 50 L120 56 L144 36 L168 42 L192 28 L216 33 L240 18 L264 24 L288 12 L320 6"/>
+          </svg>
+        </div>
+        <div class="side">
+          <div class="st"><svg class="ring" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.9" class="bgc"/><circle cx="18" cy="18" r="15.9" class="fgc"/></svg><div><div class="k">Win rate</div><div class="v">64 %</div></div></div>
+          <div class="st"><div><div class="k">Fills</div><div class="v">14 <small>9 won</small></div></div></div>
+          <div class="st"><div><div class="k">Reaction</div><div class="v">3 <small>ms</small></div></div></div>
+        </div>
       </div>
-      <div class="strip a"><i></i><i></i><i class="l"></i><i></i><i></i><i></i><i class="l"></i><i></i><i class="l"></i><i></i><i></i><i class="l"></i><i></i><i class="l"></i></div>
       <button class="btn go a" id="go" data-plan="Go live (demo)">Go live →</button>
       <div class="hint">Illustration. Swap the gap for weather, a headline, a score.</div>
     </div>
@@ -157,7 +179,7 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
   <p class="lead">At cost plus a little. No performance fee. Founding cohort: 3 months at half price.</p>
   <div class="grid3">
     <div class="price"><div class="tier">STARTER</div><div class="amt">$49 <small>/month</small></div>
-      <ul><li>Shared co-located host</li><li>One venue · 3 live bots</li><li>From Claude, Codex, Cursor or web</li></ul>
+      <ul><li>Shared co-located host</li><li>One venue · 3 live bots</li><li>MCP: Claude, Codex, Cursor</li></ul>
       <button class="btn ghost" data-plan="Starter — $49/month">Start</button></div>
     <div class="price pop"><div class="badge">POPULAR</div><div class="tier">PRO</div><div class="amt">$119 <small>/month</small></div>
       <ul><li>Your own dedicated machine</li><li>Both venues · 10 live bots</li><li>Co-located price feeds</li></ul>
@@ -181,7 +203,7 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
   </div>
 </section>
 
-<footer><span>© 2026 Polybot. Examples are illustrations, not guarantees. Trading involves risk of loss.</span><span>Kalshi · Polymarket</span></footer>
+<footer><span>© 2026 Polybot. Examples are illustrations, not guarantees. Trading involves risk of loss.</span><span>For AI agents: <a href="llms.txt">llms.txt</a> · <a href=".well-known/mcp.json">mcp.json</a></span></footer>
 </div>
 
 <div id="modal" class="modal" hidden>
@@ -236,7 +258,7 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
     function type(){if(i<=txt.length){typed.textContent=txt.slice(0,i);i++;at(38,type);}else{typed.classList.add('done');at(1200,rest);}}
     function rest(){
       items.forEach(function(x){
-        var d=x.classList.contains('bot')?2600:x.classList.contains('yes')?1800:x.classList.contains('kpis')?2000:x.classList.contains('strip')?900:1200;
+        var d=x.classList.contains('bot')?2600:x.classList.contains('yes')?1800:x.classList.contains('res')?3200:1200;
         t+=d;
         (function(x,tt){at(tt,function(){x.classList.add('on');if(x===go)go.classList.add('on');});})(x,t);
       });

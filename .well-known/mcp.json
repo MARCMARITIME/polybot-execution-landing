@@ -1,0 +1,10 @@
+{
+  "name": "polybot",
+  "description": "Our bot. Your strategy. Plug a plain-English trading strategy into a co-located bot on Kalshi and Polymarket.",
+  "endpoint": "https://mcp.polybot.run/v1",
+  "transport": "streamable-http",
+  "auth": { "type": "bearer", "obtain": "https://marcmaritime.github.io/polybot-execution-landing/" },
+  "tools": ["create_bot", "backtest", "paper_trade", "deploy", "pause", "kill", "get_fills"],
+  "status": "signups open with the next cohort; see llms.txt for how to reserve a seat",
+  "docs": "https://marcmaritime.github.io/polybot-execution-landing/llms.txt"
+}
