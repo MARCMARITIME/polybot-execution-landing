@@ -217,7 +217,6 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
   var m=document.getElementById('modal'),plan=document.getElementById('plan'),cur='';
   function open(p,rule){cur=p;plan.textContent='Plan: '+p;if(rule)document.getElementById('mrule').value=rule;m.hidden=false;document.getElementById('memail').focus();}
   document.querySelectorAll('[data-plan]').forEach(function(b){b.addEventListener('click',function(){open(b.getAttribute('data-plan'));});});
-  document.getElementById('hp').addEventListener('submit',function(e){e.preventDefault();open('Build my first bot',document.getElementById('hq').value.trim());});
   document.getElementById('mclose').addEventListener('click',function(){m.hidden=true;});
   var KEY='699249b1-1190-4b01-8606-6cb6ebfb86ba';
   document.getElementById('mf').addEventListener('submit',function(e){
