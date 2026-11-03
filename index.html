@@ -4,57 +4,47 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Polybot</title>
-<meta name="description" content="Say your bet. Polybot turns it into a bot and runs it next to Kalshi and Polymarket.">
+<meta name="description" content="Our bot. Your strategy. One sentence, from Claude, Codex, Cursor or the web app, and it runs next to Kalshi and Polymarket.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-:root{--bg:#0b0d10;--bg2:#12151a;--card:#161a20;--line:#242a33;--fg:#f2f4f7;--muted:#8b94a3;--accent:#39d2c0;--accent-ink:#06211e;--pos:#4ade80;
+:root{--bg:#0b0d10;--bg2:#12151a;--card:#161a20;--line:#242a33;--fg:#f2f4f7;--muted:#8b94a3;--accent:#39d2c0;--accent-ink:#06211e;--pos:#4ade80;--neg:#f87171;
 --sans:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;color-scheme:dark}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.55;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px;line-height:1.5;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 a{color:inherit}
-.wrap{max-width:1080px;margin:0 auto}
+.wrap{max-width:1000px;margin:0 auto}
 nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;flex-wrap:wrap}
 .logo{font-weight:800;font-size:20px;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
 .logo i{width:10px;height:10px;background:var(--accent);border-radius:2px;display:inline-block}
 nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;color:var(--muted);font-size:14px;flex-wrap:wrap}
-.btn{font:inherit;font-weight:700;font-size:15px;padding:11px 18px;border-radius:8px;border:1px solid transparent;cursor:pointer;background:var(--accent);color:var(--accent-ink)}
+.btn{font:inherit;font-weight:700;font-size:16px;padding:12px 20px;border-radius:8px;border:1px solid transparent;cursor:pointer;background:var(--accent);color:var(--accent-ink)}
 .btn.ghost{background:transparent;color:var(--fg);border-color:var(--line)}
 .btn.sm{padding:8px 14px;font-size:14px}
 .btn:focus,input:focus,textarea:focus,summary:focus{outline:2px solid var(--accent);outline-offset:2px}
-section{padding:52px 0}
-.hero{padding:44px 0 8px;max-width:720px}
-h1{font-size:clamp(38px,6vw,64px);line-height:1.02;letter-spacing:-.03em;margin:0 0 16px;font-weight:800;text-wrap:balance}
+section{padding:48px 0}
+.hero{padding:40px 0 4px;max-width:760px}
+h1{font-size:clamp(40px,7vw,72px);line-height:1;letter-spacing:-.03em;margin:0 0 16px;font-weight:800;text-wrap:balance}
 h1 em{font-style:normal;color:var(--accent)}
-.sub{color:var(--muted);font-size:18px;max-width:40ch;margin:0 0 20px}
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
-.ticks{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+.sub{color:var(--muted);font-size:20px;max-width:38ch;margin:0 0 22px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.ticks{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:14px}
 .ticks span::before{content:"✓ ";color:var(--accent)}
-.prompt{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:12px;min-width:0}
-.prompt .bar{display:flex;gap:6px}.prompt .bar i{width:9px;height:9px;border-radius:50%;background:var(--line);display:block}
-.prompt .ex{font-family:var(--mono);font-size:13px;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
-.prompt .in{display:flex;gap:8px}.prompt input{flex:1;min-width:0;font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px}
 h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.02em;line-height:1.1;margin:0 0 18px;font-weight:800;text-wrap:balance}
 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
 .lead{color:var(--muted);max-width:60ch;margin:-6px 0 24px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.stats div{background:var(--bg2);padding:18px;min-width:0}
-.stats .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.stats .v{font-size:32px;font-weight:800;letter-spacing:-.02em;margin-top:4px;line-height:1.1}
-.stats .v.acc{color:var(--accent)}
-.stats .n{font-size:12px;color:var(--muted);margin-top:6px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.chip{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;min-width:0;color:var(--muted);font-size:15px}
-.chip b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--accent);margin-bottom:6px;font-weight:500}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;min-width:0;color:var(--fg);font-size:17px}
+.chip b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--accent);margin-bottom:8px;font-weight:500}
 .price{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:14px;min-width:0;position:relative}
 .price.pop{border-color:var(--accent)}
 .price .badge{position:absolute;top:-12px;right:18px;background:var(--accent);color:var(--accent-ink);font-family:var(--mono);font-size:11px;letter-spacing:.1em;padding:4px 10px;border-radius:999px;font-weight:600}
 .price .tier{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--muted)}
 .price .amt{font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1}.price .amt small{font-size:14px;color:var(--muted);font-weight:500;letter-spacing:0}
-.price ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:15px;color:var(--muted)}
+.price ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:16px;color:var(--muted)}
 .price li::before{content:"✓  ";color:var(--accent)}
 details{border-top:1px solid var(--line);padding:14px 0}
 details:last-of-type{border-bottom:1px solid var(--line)}
-summary{cursor:pointer;font-weight:700;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary{cursor:pointer;font-weight:700;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:12px}
 summary::after{content:"+";color:var(--accent);font-family:var(--mono)}
 details[open] summary::after{content:"–"}
 details p{color:var(--muted);margin:10px 0 0;max-width:70ch}
@@ -62,31 +52,28 @@ details p{color:var(--muted);margin:10px 0 0;max-width:70ch}
 footer{color:var(--muted);font-size:13px;padding:28px 0 48px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 /* demo */
 .demo{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.demo .clients{display:flex;gap:6px;padding:10px 12px;border-bottom:1px solid var(--line);flex-wrap:wrap}
-.demo .clients button{font:inherit;font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
+.demo .clients{display:flex;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap;align-items:center}
+.demo .clients span{color:var(--muted);font-size:14px;margin-right:4px}
+.demo .clients button{font:inherit;font-size:14px;font-weight:700;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
 .demo .clients button.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.demo .steps{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line)}
-.demo .steps div{padding:12px 16px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-right:1px solid var(--line);transition:color .3s,background .3s}
-.demo .steps div:last-child{border-right:0}
-.demo .steps div.on{color:var(--accent);background:var(--bg2)}
-.demo .screen{padding:20px 22px;min-height:360px;display:grid;gap:10px;align-content:start;font-family:var(--mono);font-size:14px}
-.demo .me{justify-self:end;max-width:85%;background:var(--bg);border:1px solid var(--line);border-radius:12px 12px 2px 12px;padding:12px 14px;color:var(--fg);font-size:14px;min-height:20px}
-.demo .me::after{content:"";display:inline-block;width:8px;height:16px;background:var(--accent);vertical-align:-3px;margin-left:2px;animation:blink 1s steps(2) infinite}
+.demo .screen{padding:24px;min-height:420px;display:grid;gap:14px;align-content:start}
+.demo .me{justify-self:end;max-width:92%;background:var(--bg);border:1px solid var(--line);border-radius:14px 14px 2px 14px;padding:14px 18px;font-size:18px;line-height:1.45;min-height:24px}
+.demo .me::after{content:"";display:inline-block;width:9px;height:18px;background:var(--accent);vertical-align:-3px;margin-left:2px;animation:blink 1s steps(2) infinite}
 .demo .me.done::after{display:none}
-.demo .me.yes{min-height:0}
-.demo .tool{font-size:12px;color:var(--muted)}
-.demo .tool b{color:var(--accent);font-weight:500}
-.demo .ln{display:flex;gap:10px;align-items:baseline;color:var(--muted);font-size:13px}
-.demo .ln b{color:var(--accent);font-weight:500;min-width:14px}
-.demo .ln .t{color:var(--fg);min-width:78px}
-.demo .ask{background:var(--bg2);border:1px solid var(--line);border-radius:12px 12px 12px 2px;padding:12px 14px;color:var(--fg);font-size:14px;max-width:85%}
-.demo .row{display:grid;grid-template-columns:110px 1fr 1fr;gap:12px;font-size:13px;color:var(--muted);padding:7px 0;border-top:1px solid var(--line)}
-.demo .row .t{color:var(--fg)}
-.demo .ok{color:var(--pos)}
-.demo .go{justify-self:start;margin-top:4px}
+.demo .me.yes{min-height:0;font-weight:700}
+.demo .bot{justify-self:start;max-width:92%;background:var(--bg2);border:1px solid var(--line);border-radius:14px 14px 14px 2px;padding:14px 18px;font-size:17px;line-height:1.5}
+.demo .bot b{color:var(--accent);font-weight:700}
+.demo .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.demo .kpi{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.demo .kpi .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.demo .kpi .v{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-top:4px}
+.demo .kpi .v.pos{color:var(--pos)}
+.demo .strip{display:flex;gap:5px;flex-wrap:wrap}
+.demo .strip i{width:18px;height:18px;border-radius:4px;background:var(--pos);display:block}
+.demo .strip i.l{background:var(--neg);opacity:.8}
 .demo .go.on{animation:pulse 1.6s ease-in-out infinite}
-.demo .hint{font-family:var(--sans);font-size:13px;color:var(--muted);margin-top:4px}
-.demo .a{opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s}
+.demo .hint{font-size:13px;color:var(--muted)}
+.demo .a{opacity:0;transform:translateY(6px);transition:opacity .4s,transform .4s}
 .demo .a.on{opacity:1;transform:none}
 @keyframes blink{to{visibility:hidden}}
 @keyframes pulse{50%{box-shadow:0 0 0 8px rgba(57,210,192,.18)}}
@@ -99,8 +86,8 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
 .modal input,.modal textarea{font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:11px;width:100%}
 .out{display:none;border-top:1px solid var(--line);padding-top:14px}.out.show{display:grid}
 .okmsg{color:var(--pos)}
-@media (max-width:860px){.hero{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:1fr}.demo .row{grid-template-columns:1fr 1fr}.demo .row .s{display:none}}
-@media (max-width:480px){.stats{grid-template-columns:1fr}nav ul{display:none}section{padding:38px 0}.demo .steps div{padding:10px 8px;font-size:10px}.demo .me,.demo .ask{max-width:100%}}
+@media (max-width:860px){.grid3{grid-template-columns:1fr}.demo .kpis{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){nav ul{display:none}section{padding:36px 0}.demo .screen{padding:16px}.demo .me,.demo .bot{max-width:100%;font-size:16px}}
 @media (prefers-reduced-motion:no-preference){.btn{transition:filter .15s}.btn:hover{filter:brightness(1.1)}}
 @media (prefers-reduced-motion:reduce){.demo .a{opacity:1;transform:none}.demo .go.on{animation:none}.demo .me::after{display:none}}
 </style>
@@ -109,55 +96,43 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
 <div class="wrap">
 <nav>
   <div class="logo"><i></i>Polybot</div>
-  <ul><li><a href="#demo">Demo</a></li><li><a href="#examples">Examples</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul>
+  <ul><li><a href="#demo">Demo</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul>
   <div style="display:flex;gap:10px"><button class="btn ghost sm" data-plan="Sign in">Sign in</button><button class="btn sm" data-plan="Get started">Get started</button></div>
 </nav>
 
 <section class="hero">
-  <div>
-    <h1>Say your bet. <em>Polybot runs it.</em></h1>
-    <p class="sub">The trading engine is built: fast, co-located, guarded. Nothing to code. You bring one sentence, from Claude, Codex, Cursor or the web app.</p>
-    <div class="cta"><button class="btn" data-plan="Build my first bot">Build your first bot →</button><a class="btn ghost" href="#demo" style="text-decoration:none;display:inline-block">Watch the demo</a></div>
-    <div class="ticks"><span>Cancel anytime</span><span>Paper trading included</span><span>Founding cohort: 3 months at half price</span></div>
-  </div>
+  <h1>Our bot. <em>Your strategy.</em></h1>
+  <p class="sub">A fast, guarded trading bot, already built and co-located next to Kalshi and Polymarket. Plug in your strategy in one sentence.</p>
+  <div class="cta"><button class="btn" data-plan="Plug in my strategy">Plug in my strategy →</button><a class="btn ghost" href="#demo" style="text-decoration:none;display:inline-block">See it</a></div>
+  <div class="ticks"><span>Your keys, your account</span><span>Cancel anytime</span><span>Founding cohort: 3 months at half price</span></div>
 </section>
 
 <section id="demo">
-  <div class="eyebrow">Demo</div>
-  <h2>From your assistant to a live bot.</h2>
   <div class="demo" id="dm">
-    <div class="clients" id="clients"><button class="on" data-c="Claude">Claude</button><button data-c="Codex">Codex</button><button data-c="Cursor">Cursor</button><button data-c="Web app">Web app</button></div>
-    <div class="steps"><div id="s1" class="on">1 · You, in <span class="cl">Claude</span></div><div id="s2">2 · Polybot builds</div><div id="s3">3 · It runs</div></div>
+    <div class="clients" id="clients"><span>From</span><button class="on" data-c="Claude">Claude</button><button data-c="Codex">Codex</button><button data-c="Cursor">Cursor</button><button data-c="Web app">the web app</button></div>
     <div class="screen">
       <div class="me" id="typed"></div>
-      <div class="tool a"><span class="cl">Claude</span> → <b>polybot.create_bot</b></div>
-      <div class="ln a"><b>✓</b><span class="t">Markets</span><span>Kalshi × Polymarket · same BTC 15-min window</span></div>
-      <div class="ln a"><b>✓</b><span class="t">Signal</span><span>both order books, live</span></div>
-      <div class="ln a"><b>✓</b><span class="t">Rule</span><span>gap ≥ 4 points → buy the cheap side</span></div>
-      <div class="ln a"><b>✓</b><span class="t">Guards</span><span>$50 a day · kill switch</span></div>
-      <div class="ln a"><b>✓</b><span class="t">Placement</span><span>co-located, both venues</span></div>
-      <div class="ask a">A 4-point gap closes in milliseconds. Add the institutional fibre feed for the last microseconds? At cost, $49 a day.</div>
-      <div class="me yes a done" id="yes">Yes.</div>
-      <div class="tool a"><span class="cl">Claude</span> → <b>polybot.paper_trade</b> · 2 days · 11 fills · <b>polybot.deploy</b></div>
-      <div class="row a"><span>09:14:02.113</span><span class="t">gap 5 pts · Polymarket cheaper</span><span class="ok">Bought UP 0.41 · $50 · 3 ms</span></div>
-      <div class="row a"><span>09:31:40.870</span><span class="t">gap 3 pts</span><span>Passed · under 4</span></div>
-      <div class="row a"><span>10:05:11.004</span><span class="t">gap 6 pts · Kalshi cheaper</span><span class="ok">Bought YES 0.38 · $50 · cap reached</span></div>
+      <div class="bot a">Plugged in. Running on <b>Polybot</b> next to Kalshi and Polymarket, $50 a day, kill switch armed. A 4-point gap closes in milliseconds: add the <b>institutional fibre feed</b>? $49 a day, at cost.</div>
+      <div class="me yes a done">Yes.</div>
+      <div class="bot a">Fibre on. Here are your <b>results</b> after 2 days of paper trading:</div>
+      <div class="kpis a">
+        <div class="kpi"><div class="k">Win rate</div><div class="v pos">64 %</div></div>
+        <div class="kpi"><div class="k">P&amp;L</div><div class="v pos">+$86</div></div>
+        <div class="kpi"><div class="k">Fills</div><div class="v">14</div></div>
+        <div class="kpi"><div class="k">Reaction</div><div class="v">3 ms</div></div>
+      </div>
+      <div class="strip a"><i></i><i></i><i class="l"></i><i></i><i></i><i></i><i class="l"></i><i></i><i class="l"></i><i></i><i></i><i class="l"></i><i></i><i class="l"></i></div>
       <button class="btn go a" id="go" data-plan="Go live (demo)">Go live →</button>
       <div class="hint">Illustration. Swap the gap for weather, a headline, a score.</div>
     </div>
   </div>
 </section>
 
-<section id="examples">
-  <div class="eyebrow">Examples</div>
-  <h2>Six bots, six sentences.</h2>
+<section>
   <div class="grid3">
     <div class="chip"><b>WEATHER</b>“Buy YES on tomorrow’s NYC rain when the forecast says 70 %+ and the price is under 0.55.”</div>
-    <div class="chip"><b>CRYPTO</b>“Buy UP when Binance is up 0.10 % in 30 s and the ask is under 0.55. Max $25 per window.”</div>
-    <div class="chip"><b>RATES</b>“The second a wire reports the Fed decision, buy the matching side if it is under 0.90. Once.”</div>
     <div class="chip"><b>ELECTIONS</b>“When a state’s count crosses my threshold, buy that candidate up to $200, then stop.”</div>
-    <div class="chip"><b>SPORTS</b>“Buy the leader’s NO when live win probability drops 15 points in two minutes.”</div>
-    <div class="chip"><b>MY MODEL</b>“Buy NO whenever the ask is 8 points under my model’s probability. Stop after 3 losses.”</div>
+    <div class="chip"><b>CRYPTO</b>“Buy UP when Binance is up 0.10 % in 30 s and the ask is under 0.55. Max $25 per window.”</div>
   </div>
 </section>
 
@@ -167,7 +142,7 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
   <p class="lead">At cost plus a little. No performance fee. Founding cohort: 3 months at half price.</p>
   <div class="grid3">
     <div class="price"><div class="tier">STARTER</div><div class="amt">$49 <small>/month</small></div>
-      <ul><li>Shared co-located host</li><li>One venue · 3 live bots</li><li>MCP for your assistant</li></ul>
+      <ul><li>Shared co-located host</li><li>One venue · 3 live bots</li><li>From Claude, Codex, Cursor or web</li></ul>
       <button class="btn ghost" data-plan="Starter — $49/month">Start</button></div>
     <div class="price pop"><div class="badge">POPULAR</div><div class="tier">PRO</div><div class="amt">$119 <small>/month</small></div>
       <ul><li>Your own dedicated machine</li><li>Both venues · 10 live bots</li><li>Co-located price feeds</li></ul>
@@ -179,16 +154,15 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
 </section>
 
 <section id="faq">
-  <div class="eyebrow">FAQ</div>
   <details open><summary>Do you hold my funds?</summary><p>No. Your account, your keys. We only place and cancel orders in your name. Revoke any time.</p></details>
   <details><summary>Which markets?</summary><p>Everything Kalshi and Polymarket list: weather, politics, economics, sports, crypto, culture.</p></details>
-  <details><summary>Will it make money?</summary><p>That is your rule’s job. Ours: run it fast, within your limits, and show you exactly what it did.</p></details>
+  <details><summary>Will it make money?</summary><p>That is your strategy’s job. Ours: run it fast, within your limits, and show you exactly what it did.</p></details>
 </section>
 
 <section>
   <div class="final">
-    <h2>Say your bet.</h2>
-    <button class="btn" data-plan="Build my first bot (final CTA)">Build your first bot</button>
+    <h2>Our bot. Your strategy.</h2>
+    <button class="btn" data-plan="Plug in my strategy (final CTA)">Plug in my strategy</button>
   </div>
 </section>
 
@@ -202,7 +176,7 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
     <p id="plan" style="font-family:var(--mono);font-size:13px;color:var(--accent)"></p>
     <form id="mf" novalidate>
       <label for="memail">Your e-mail<input id="memail" type="email" placeholder="you@example.com" autocomplete="email"></label>
-      <label for="mrule">Your bot, optional<textarea id="mrule" rows="2"></textarea></label>
+      <label for="mrule">Your strategy, optional<textarea id="mrule" rows="2"></textarea></label>
       <div style="display:flex;gap:10px;flex-wrap:wrap"><button type="submit" class="btn">Reserve my seat</button><button type="button" class="btn ghost" id="mclose">Not now</button></div>
       <div class="out" id="mout">
         <p id="msent" class="okmsg" hidden>Seat reserved. We write to you the day it opens.</p>
@@ -230,33 +204,30 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
       .then(function(r){return r.json()}).then(function(j){if(j&&j.success)done();else fail();}).catch(fail);
   });
 
-  /* demo loop: 1 type → 2 build lines → question → "Yes." → 3 rows → go live → loop */
-  var txt='Build me a bot: whenever the same BTC 15-min market is 4 points cheaper on Polymarket than on Kalshi, buy the cheap side. Max $50 a day.';
+  /* demo loop */
+  var txt='Run my strategy on your bot: buy the cheap side whenever the same BTC market is 4 points cheaper on Polymarket than on Kalshi, max $50 a day. Then show me my results.';
   var typed=document.getElementById('typed'),items=[].slice.call(document.querySelectorAll('#dm .a')),go=document.getElementById('go');
-  var steps=[document.getElementById('s1'),document.getElementById('s2'),document.getElementById('s3')];
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,timers=[];
-  function at(ms,fn){timers.push(setTimeout(fn,ms));}
-  function step(i){steps.forEach(function(s,j){s.classList.toggle('on',j===i);});}
-  function reset(){timers.forEach(clearTimeout);timers=[];typed.textContent='';typed.classList.remove('done');items.forEach(function(x){x.classList.remove('on');});go.classList.remove('on');step(0);}
   var CL=['Claude','Codex','Cursor','Web app'],ci=0,cbtn=[].slice.call(document.querySelectorAll('#clients button'));
-  function setClient(i){ci=i;cbtn.forEach(function(b,j){b.classList.toggle('on',j===i);});[].slice.call(document.querySelectorAll('#dm .cl')).forEach(function(e){e.textContent=CL[i];});}
+  function at(ms,fn){timers.push(setTimeout(fn,ms));}
+  function setClient(i){ci=i;cbtn.forEach(function(b,j){b.classList.toggle('on',j===i);});}
   cbtn.forEach(function(b,j){b.addEventListener('click',function(){setClient(j);play();});});
   function next(){setClient((ci+1)%CL.length);play();}
+  function reset(){timers.forEach(clearTimeout);timers=[];typed.textContent='';typed.classList.remove('done');items.forEach(function(x){x.classList.remove('on');});go.classList.remove('on');}
   function play(){
     reset();
     if(reduce){typed.textContent=txt;typed.classList.add('done');items.forEach(function(x){x.classList.add('on');});go.classList.add('on');return;}
     var i=0,t=0;
-    function type(){if(i<=txt.length){typed.textContent=txt.slice(0,i);i++;at(42,type);}else{typed.classList.add('done');at(900,rest);}}
+    function type(){if(i<=txt.length){typed.textContent=txt.slice(0,i);i++;at(38,type);}else{typed.classList.add('done');at(1200,rest);}}
     function rest(){
-      var k=0;
       items.forEach(function(x){
-        var d=x.classList.contains('row')?1600:x.classList.contains('ask')||x.classList.contains('yes')?2400:900;
+        var d=x.classList.contains('bot')?2600:x.classList.contains('yes')?1800:x.classList.contains('kpis')?2000:x.classList.contains('strip')?900:1200;
         t+=d;
-        (function(x,tt){at(tt,function(){x.classList.add('on');if(x.classList.contains('tool')&&k++===0)step(1);if(x.classList.contains('row'))step(2);if(x===go)go.classList.add('on');});})(x,t);
+        (function(x,tt){at(tt,function(){x.classList.add('on');if(x===go)go.classList.add('on');});})(x,t);
       });
-      at(t+9000,next);
+      at(t+11000,next);
     }
-    at(400,type);
+    at(500,type);
   }
   var started=false,dm=document.getElementById('dm');
   function start(){if(started)return;started=true;play();}
