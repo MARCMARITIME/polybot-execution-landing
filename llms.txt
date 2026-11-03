@@ -42,7 +42,7 @@ Measured, not assumed: continuous round-trip probes from inside the exchange's c
 
 ## Markets and signals
 
-Any market listed on Kalshi or Polymarket (weather, politics, economics, sports, crypto, culture). Signals: prices, forecasts, news wires, polls, scores, on-chain data, the user's own model.
+Any market listed on Kalshi or Polymarket (weather, politics, economics, sports, crypto, culture). Signals: prices, forecasts, news wires, polls, scores, on-chain data, the user's own model. Typical strategies users plug in: copy a wallet, weather forecast vs temperature brackets, 15-minute crypto Up/Down off Binance, live sports score lag, news releases, near-resolution markets, cross-venue gaps.
 
 ## Team
 
