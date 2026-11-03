@@ -95,7 +95,7 @@ pre{font-family:var(--mono);font-size:13px;white-space:pre-wrap;word-break:break
 
 <section class="hero">
   <div>
-    <h1>Your edge, executed <em>in 70 milliseconds.</em></h1>
+    <h1>Your edge, executed <em>next to the exchange.</em></h1>
     <p class="sub">Describe your strategy in one sentence. Polybot turns it into a bot, backtests it on real Kalshi and Polymarket order books, and fires it next to the exchange before the crowd has refreshed the page. Your keys, your account, your profits.</p>
     <div class="cta"><button class="btn" data-plan="Build my first bot (Free)">Build your first bot →</button><a class="btn ghost" href="#how" style="text-decoration:none;display:inline-block">See how it works</a></div>
     <div class="ticks"><span>No credit card</span><span>Free forever plan</span><span>Founding cohort: 3 months of Pro free</span></div>
@@ -108,7 +108,7 @@ pre{font-family:var(--mono);font-size:13px;white-space:pre-wrap;word-break:break
 </section>
 
 <div class="stats">
-  <div><div class="k">Exchange → decision</div><div class="v acc">70 ms</div><div class="n">median, measured live on 16 422 states</div></div>
+  <div><div class="k">Placement</div><div class="v acc">Co-located</div><div class="n">next to the Kalshi and Polymarket matching engines</div></div>
   <div><div class="k">Bots in parallel</div><div class="v">12</div><div class="n">on 6 markets, 24/7</div></div>
   <div><div class="k">Live fills executed</div><div class="v">263</div><div class="n">Sept–Oct 2026, every one receipted</div></div>
   <div><div class="k">Missed kill switches</div><div class="v acc">0</div><div class="n">six weeks live, 24/7</div></div>
@@ -128,7 +128,7 @@ pre{font-family:var(--mono);font-size:13px;white-space:pre-wrap;word-break:break
   <p class="lead">Any strategy you can describe: momentum on the 15-minute markets, cross-venue spreads, latency plays against Binance, copy rules. You bring the idea, Polybot brings the speed, the guards and the receipts.</p>
   <div class="grid4">
     <div class="card"><div class="num">01 / BUILD</div><h3>Plain-English builder</h3><p>Type what the bot should do. Thirty seconds later you have a checked rule, a decision chart on real past data, and a Go Live button.</p></div>
-    <div class="card"><div class="num">02 / EXECUTE</div><h3>Next to the exchange</h3><p>AWS Ohio for Kalshi, EU placement for Polymarket, Binance and Coinbase feeds. 70 ms from exchange trade to decision, when a browser tab takes 2 seconds.</p></div>
+    <div class="card"><div class="num">02 / EXECUTE</div><h3>Next to the exchange</h3><p>Your bot runs in the same data-center region as the exchange it trades, Kalshi or Polymarket, with Binance and Coinbase feeds next to it. The lowest latency the venue allows, when a browser tab takes 2 seconds.</p></div>
     <div class="card"><div class="num">03 / GUARD</div><h3>Sleep-safe guards</h3><p>Daily cap, per-window cap, loss-streak stop, one-click kill switch. Nothing re-arms itself. Battle-tested live, six weeks, 24/7.</p></div>
     <div class="card"><div class="num">04 / REPORT</div><h3>Receipts, not vibes</h3><p>Each fill with the price one second later, so you see exactly how much cheaper you bought than the crowd. Know your edge in dollars, every day.</p></div>
   </div>
@@ -167,10 +167,10 @@ pre{font-family:var(--mono);font-size:13px;white-space:pre-wrap;word-break:break
       <ul><li>Everything in Free</li><li>Live trading, one venue</li><li>5 live bots</li><li>Daily caps and kill switch</li></ul>
       <button class="btn" data-plan="Starter — $19/month">Upgrade</button></div>
     <div class="price"><div class="tier">PRO</div><div class="amt">$49 <small>/month</small></div>
-      <ul><li>Everything in Starter</li><li>Kalshi and Polymarket</li><li>25 live bots</li><li>Colocated Binance/Coinbase feed</li></ul>
+      <ul><li>Everything in Starter</li><li>Kalshi and Polymarket</li><li>25 live bots</li><li>Co-located Binance/Coinbase feeds</li></ul>
       <button class="btn ghost" data-plan="Pro — $49/month">Go pro</button></div>
   </div>
-  <p class="lead" style="margin-top:16px;font-size:14px">Dedicated co-located feed line for your own bots: on quote.</p>
+  <p class="lead" style="margin-top:16px;font-size:14px">Need more speed? Institutional fibre market-data line on request, billed at cost.</p>
 </section>
 
 <section id="faq">
@@ -179,7 +179,7 @@ pre{font-family:var(--mono);font-size:13px;white-space:pre-wrap;word-break:break
   <details open><summary>What is Polybot?</summary><p>A hosted platform that turns a strategy written in plain English into a trading bot on Kalshi and Polymarket, runs it next to the exchange with hard risk limits, and logs every order with its latency. It is the stack we built and ran with our own money from September to October 2026.</p></details>
   <details><summary>Do you hold my funds?</summary><p>No. On Kalshi you give an API key scoped to trading; on Polymarket you connect your own wallet. We place and cancel orders in your name. You can revoke access at any time.</p></details>
   <details><summary>Will the bot make money?</summary><p>That depends on your rule, and Polybot is built to find out fast: backtest on real order books in minutes, paper-trade on live prices for free, then go live with hard limits. We ran 170 strategies through this exact loop ourselves. Execution, speed and guards are on us; the edge is yours.</p></details>
-  <details><summary>How fast is it?</summary><p>Median 70 ms from a Binance trade to our decision, measured on 16 422 live states, with the bot in AWS Ohio. Our own code adds under 2 ms; an alarm fires if it ever does not.</p></details>
+  <details><summary>How fast is it?</summary><p>As fast as the venue allows: your bot is co-located in the same cloud region as the exchange’s matching engine, so the round trip is the exchange’s own, not the internet’s. Our code adds under 2 ms, and an alarm fires if it ever does not. For the last microseconds, an institutional fibre market-data line is available on request, billed at cost.</p></details>
   <details><summary>Which markets?</summary><p>Kalshi and Polymarket 15-minute and hourly crypto markets first (BTC, ETH, SOL, XRP, DOGE, BNB), where our data and backtests live. Other markets on request.</p></details>
 </section>
 
