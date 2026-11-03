@@ -97,30 +97,40 @@ pre{font-family:var(--mono);font-size:13px;white-space:pre-wrap;word-break:break
 <section class="hero">
   <div>
     <h1>Your edge, executed <em>next to the exchange.</em></h1>
-    <p class="sub">Describe your strategy in one sentence. Polybot turns it into a bot, backtests it on real Kalshi and Polymarket order books, and fires it next to the exchange before the crowd has refreshed the page. Your keys, your account, your profits.</p>
+    <p class="sub">Describe your strategy in one sentence. Polybot turns it into a bot, lets you paper-trade it on live prices, then fires it next to the exchange before the crowd has refreshed the page. Weather, elections, sports, crypto: any market with a price. Your keys, your account, your profits.</p>
     <div class="cta"><button class="btn" data-plan="Build my first bot">Build your first bot →</button><a class="btn ghost" href="#how" style="text-decoration:none;display:inline-block">See how it works</a></div>
     <div class="ticks"><span>Cancel anytime</span><span>Paper trading on every plan</span><span>Founding cohort: 3 months at half price</span></div>
   </div>
   <div class="prompt">
     <div class="bar"><i></i><i></i><i></i></div>
-    <div class="ex">BTC 15-min: buy UP when my probability beats the ask by 8 points. Max $25 per window, stop after 3 losses today.</div>
+    <div class="ex">Buy YES on tomorrow’s NYC rain market when the NWS forecast says 70 % or more and the price is under 0.55. Max $40 a day.</div>
     <form class="in" id="hp" novalidate><input id="hq" placeholder="Describe your trading bot…" aria-label="Describe your trading bot"><button class="btn" type="submit">↵</button></form>
   </div>
 </section>
 
 <div class="stats">
+  <div><div class="k">Markets</div><div class="v">Any</div><div class="n">everything listed on Kalshi and Polymarket: weather, politics, sports, economy, crypto, culture</div></div>
+  <div><div class="k">Signals</div><div class="v">Yours</div><div class="n">forecasts, prices, news wires, polls, scores, on-chain data, your own model</div></div>
+  <div><div class="k">Sentence to live bot</div><div class="v acc">Minutes</div><div class="n">type it, read the rule back, paper-trade, go live</div></div>
   <div><div class="k">Placement</div><div class="v acc">Co-located</div><div class="n">next to the Kalshi and Polymarket matching engines</div></div>
-  <div><div class="k">Bots in parallel</div><div class="v">12</div><div class="n">on 6 markets, 24/7</div></div>
-  <div><div class="k">Live fills executed</div><div class="v">263</div><div class="n">Sept–Oct 2026, every one receipted</div></div>
-  <div><div class="k">Missed kill switches</div><div class="v acc">0</div><div class="n">six weeks live, 24/7</div></div>
 </div>
 
 <section>
-  <div class="live"><b></b>Live results</div>
-  <h2>Any market with a price. Any signal you can describe.</h2>
-  <p class="lead">Bitcoin up or down in the next 15 minutes. A rate decision, an election night, a final score, a headline that just broke. If it trades on Kalshi or Polymarket, your bot can watch it, read what moves it, and buy before the crowd has finished reading. Below, winning fills from Polybot bots on six crypto markets, every order stamped to the millisecond and priced again one second later. Your bot’s journal looks like this on day one.</p>
-  <div class="tablewrap"><table><thead><tr><th>Window (UTC)</th><th>Market</th><th>Price</th><th>Shares</th><th>P&amp;L</th><th>Result</th></tr></thead><tbody><tr><td>28 Sep 02:00</td><td>SOL 15-min Up</td><td>0.32</td><td>9</td><td class="pos">+6.12 $</td><td>WON</td></tr><tr><td>25 Sep 13:45</td><td>BTC 15-min Up</td><td>0.19</td><td>15</td><td class="pos">+12.15 $</td><td>WON</td></tr><tr><td>25 Sep 12:15</td><td>XRP 15-min Up</td><td>0.11</td><td>27</td><td class="pos">+24.03 $</td><td>WON</td></tr><tr><td>25 Sep 12:15</td><td>XRP 15-min Up</td><td>0.12</td><td>25</td><td class="pos">+22.00 $</td><td>WON</td></tr><tr><td>23 Sep 16:00</td><td>DOGE 15-min Up</td><td>0.10</td><td>20</td><td class="pos">+18.00 $</td><td>WON</td></tr><tr><td>23 Sep 16:00</td><td>ETH 15-min Up</td><td>0.13</td><td>20</td><td class="pos">+17.40 $</td><td>WON</td></tr><tr><td>23 Sep 16:00</td><td>DOGE 15-min Up</td><td>0.17</td><td>17</td><td class="pos">+13.91 $</td><td>WON</td></tr><tr><td>23 Sep 16:00</td><td>BTC 15-min Up</td><td>0.20</td><td>15</td><td class="pos">+12.00 $</td><td>WON</td></tr></tbody></table></div>
-  <p class="lead" style="margin-top:12px;font-size:14px">263 live fills, 12 bots, 6 markets, 24/7 for six weeks, zero missed kill switches. Crypto is where we started. Where your bot goes next is your sentence.</p>
+  <div class="eyebrow">Worked example</div>
+  <h2>Say it. Polybot runs it. Weather, elections, crypto, anything with a price.</h2>
+  <p class="lead">Here is how a weather bot comes to life. Swap the weather for a rate decision, a box-office opening, a game or a tweet count: the three steps never change.</p>
+  <div class="grid3">
+    <div class="card"><div class="num">1 · YOU TYPE</div><p>“Buy YES on <em>NYC high temperature above 60°F tomorrow</em> whenever the National Weather Service forecast is at least 5°F above the strike and the price is under 0.60. Max $50 a day.”</p></div>
+    <div class="card"><div class="num">2 · POLYBOT BUILDS</div><p>It reads the rule back to you line by line, wires the NWS forecast feed and the Kalshi order book to it, attaches your daily cap and a kill switch, and starts in paper trading on live prices. You flip it live when the journal looks right.</p></div>
+    <div class="card"><div class="num">3 · YOU WATCH THE JOURNAL</div><p>Every decision is written down: what the signal said, what the price was, why the bot bought or passed. Example of a morning below.</p></div>
+  </div>
+  <div class="tablewrap" style="margin-top:16px"><table><thead><tr><th>Time (ET)</th><th>Market</th><th>Signal</th><th>Price</th><th>Decision</th></tr></thead><tbody>
+    <tr><td>07:02</td><td>NYC high &gt; 60°F tomorrow</td><td>NWS forecast 67°F (+7)</td><td>0.54</td><td class="pos">Bought YES, $27</td></tr>
+    <tr><td>07:02</td><td>Chicago high &gt; 55°F tomorrow</td><td>NWS forecast 58°F (+3)</td><td>0.47</td><td>Passed: margin under 5°F</td></tr>
+    <tr><td>07:02</td><td>Miami high &gt; 84°F tomorrow</td><td>NWS forecast 90°F (+6)</td><td>0.63</td><td>Passed: price over 0.60</td></tr>
+    <tr><td>11:30</td><td>Miami high &gt; 84°F tomorrow</td><td>NWS forecast 91°F (+7)</td><td>0.58</td><td class="pos">Bought YES, $23 · daily cap reached</td></tr>
+  </tbody></table></div>
+  <p class="lead" style="margin-top:12px;font-size:14px">Example journal, for illustration. Every bot gets the same: a rule you can read, a journal you can audit, limits you set.</p>
 </section>
 
 <section id="features">
@@ -130,7 +140,7 @@ pre{font-family:var(--mono);font-size:13px;white-space:pre-wrap;word-break:break
   <div class="grid4">
     <div class="card"><div class="num">01 / BUILD</div><h3>Plain-English builder</h3><p>Type what the bot should do. Thirty seconds later you have a checked rule, a decision chart on real past data, and a Go Live button.</p></div>
     <div class="card"><div class="num">02 / EXECUTE</div><h3>Next to the exchange</h3><p>Your bot runs in the same data-center region as the exchange it trades, Kalshi or Polymarket, with Binance and Coinbase feeds next to it. The lowest latency the venue allows, when a browser tab takes 2 seconds.</p></div>
-    <div class="card"><div class="num">03 / GUARD</div><h3>Sleep-safe guards</h3><p>Daily cap, per-window cap, loss-streak stop, one-click kill switch. Nothing re-arms itself. Battle-tested live, six weeks, 24/7.</p></div>
+    <div class="card"><div class="num">03 / GUARD</div><h3>Sleep-safe guards</h3><p>Daily cap, per-window cap, loss-streak stop, one-click kill switch. Nothing re-arms itself without you.</p></div>
     <div class="card"><div class="num">04 / REPORT</div><h3>Receipts, not vibes</h3><p>Each fill with the price one second later, so you see exactly how much cheaper you bought than the crowd. Know your edge in dollars, every day.</p></div>
   </div>
 </section>
@@ -203,12 +213,12 @@ get_fills      every fill, priced +1 s later</pre><p>Then it is a conversation: 
 <section id="faq">
   <div class="eyebrow">FAQ</div>
   <h2>Questions, answered.</h2>
-  <details open><summary>What is Polybot?</summary><p>A hosted platform that turns a strategy written in plain English into a trading bot on Kalshi and Polymarket, runs it next to the exchange with hard risk limits, and logs every order with its latency. It is the stack we built and ran with our own money from September to October 2026.</p></details>
+  <details open><summary>What is Polybot?</summary><p>A hosted platform that turns a strategy written in plain English into a trading bot on Kalshi and Polymarket, runs it next to the exchange with hard risk limits, and logs every order with its latency. Built by traders who ran it live before opening it to you.</p></details>
   <details><summary>Do you hold my funds?</summary><p>No. On Kalshi you give an API key scoped to trading; on Polymarket you connect your own wallet. We place and cancel orders in your name. You can revoke access at any time.</p></details>
   <details><summary>Will the bot make money?</summary><p>That depends on your rule, and Polybot is built to find out fast: backtest on real order books in minutes, paper-trade on live prices, then go live with hard limits. We ran 170 strategies through this exact loop ourselves. Execution, speed and guards are on us; the edge is yours.</p></details>
   <details><summary>How fast is it?</summary><p>As fast as the venue allows: your bot is co-located in the same cloud region as the exchange’s matching engine, so the round trip is the exchange’s own, not the internet’s. Our code adds under 2 ms, and an alarm fires if it ever does not. For the last microseconds, an institutional fibre market-data line is available on request, billed at cost.</p></details>
   <details><summary>Can I use it from Claude or Codex?</summary><p>Yes. Polybot ships an MCP server: add one entry to your assistant’s config and it can create, backtest, deploy, pause and kill your bots and read your fills, through seven scoped tools. Your exchange keys stay on Polybot; the assistant never sees them. Available on every plan.</p></details>
-  <details><summary>Which markets?</summary><p>Kalshi and Polymarket 15-minute and hourly crypto markets first (BTC, ETH, SOL, XRP, DOGE, BNB), where our data and backtests live. Other markets on request.</p></details>
+  <details><summary>Which markets?</summary><p>Every market Kalshi and Polymarket list: weather, politics, economics, sports, crypto, culture and more. Backtests use real order-book history where it exists; everything else starts in paper trading on live prices, which is often the better test anyway.</p></details>
 </section>
 
 <section>
