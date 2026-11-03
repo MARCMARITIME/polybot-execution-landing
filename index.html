@@ -22,7 +22,7 @@ nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;color:var(--mute
 .btn.sm{padding:8px 14px;font-size:14px}
 .btn:focus,input:focus,textarea:focus,summary:focus{outline:2px solid var(--accent);outline-offset:2px}
 section{padding:52px 0}
-.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding:44px 0 28px}
+.hero{padding:44px 0 8px;max-width:720px}
 h1{font-size:clamp(38px,6vw,64px);line-height:1.02;letter-spacing:-.03em;margin:0 0 16px;font-weight:800;text-wrap:balance}
 h1 em{font-style:normal;color:var(--accent)}
 .sub{color:var(--muted);font-size:18px;max-width:40ch;margin:0 0 20px}
@@ -62,6 +62,9 @@ details p{color:var(--muted);margin:10px 0 0;max-width:70ch}
 footer{color:var(--muted);font-size:13px;padding:28px 0 48px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 /* demo */
 .demo{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.demo .clients{display:flex;gap:6px;padding:10px 12px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.demo .clients button{font:inherit;font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
+.demo .clients button.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .demo .steps{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line)}
 .demo .steps div{padding:12px 16px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-right:1px solid var(--line);transition:color .3s,background .3s}
 .demo .steps div:last-child{border-right:0}
@@ -113,32 +116,21 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
 <section class="hero">
   <div>
     <h1>Say your bet. <em>Polybot runs it.</em></h1>
-    <p class="sub">One sentence, from the web app or your own AI assistant. A bot next to Kalshi and Polymarket. Your keys, your account.</p>
+    <p class="sub">One sentence, from Claude, Codex, Cursor or the web app. A bot next to Kalshi and Polymarket. Your keys, your account.</p>
     <div class="cta"><button class="btn" data-plan="Build my first bot">Build your first bot →</button><a class="btn ghost" href="#demo" style="text-decoration:none;display:inline-block">Watch the demo</a></div>
     <div class="ticks"><span>Cancel anytime</span><span>Paper trading included</span><span>Founding cohort: 3 months at half price</span></div>
   </div>
-  <div class="prompt">
-    <div class="bar"><i></i><i></i><i></i></div>
-    <div class="ex">Buy YES on tomorrow’s NYC rain market when the forecast says 70 %+ and the price is under 0.55. Max $40 a day.</div>
-    <form class="in" id="hp" novalidate><input id="hq" placeholder="Describe your bot…" aria-label="Describe your bot"><button class="btn" type="submit">↵</button></form>
-  </div>
 </section>
-
-<div class="stats">
-  <div><div class="k">Markets</div><div class="v">Any</div><div class="n">everything on Kalshi and Polymarket</div></div>
-  <div><div class="k">Signals</div><div class="v">Yours</div><div class="n">prices, forecasts, news, polls, scores</div></div>
-  <div><div class="k">Placement</div><div class="v acc">Co-located</div><div class="n">next to the exchange</div></div>
-  <div><div class="k">Guards</div><div class="v acc">Always</div><div class="n">daily cap, kill switch, journal</div></div>
-</div>
 
 <section id="demo">
   <div class="eyebrow">Demo</div>
   <h2>From your assistant to a live bot.</h2>
   <div class="demo" id="dm">
-    <div class="steps"><div id="s1" class="on">1 · You, in Claude</div><div id="s2">2 · Polybot builds</div><div id="s3">3 · It runs</div></div>
+    <div class="clients" id="clients"><button class="on" data-c="Claude">Claude</button><button data-c="Codex">Codex</button><button data-c="Cursor">Cursor</button><button data-c="Web app">Web app</button></div>
+    <div class="steps"><div id="s1" class="on">1 · You, in <span class="cl">Claude</span></div><div id="s2">2 · Polybot builds</div><div id="s3">3 · It runs</div></div>
     <div class="screen">
       <div class="me" id="typed"></div>
-      <div class="tool a">Claude → <b>polybot.create_bot</b></div>
+      <div class="tool a"><span class="cl">Claude</span> → <b>polybot.create_bot</b></div>
       <div class="ln a"><b>✓</b><span class="t">Markets</span><span>Kalshi × Polymarket · same BTC 15-min window</span></div>
       <div class="ln a"><b>✓</b><span class="t">Signal</span><span>both order books, live</span></div>
       <div class="ln a"><b>✓</b><span class="t">Rule</span><span>gap ≥ 4 points → buy the cheap side</span></div>
@@ -146,12 +138,12 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
       <div class="ln a"><b>✓</b><span class="t">Placement</span><span>co-located, both venues</span></div>
       <div class="ask a">A 4-point gap closes in milliseconds. Add the institutional fibre feed for the last microseconds? At cost, $49 a day.</div>
       <div class="me yes a done" id="yes">Yes.</div>
-      <div class="tool a">Claude → <b>polybot.paper_trade</b> · 2 days · 11 fills · <b>polybot.deploy</b></div>
+      <div class="tool a"><span class="cl">Claude</span> → <b>polybot.paper_trade</b> · 2 days · 11 fills · <b>polybot.deploy</b></div>
       <div class="row a"><span>09:14:02.113</span><span class="t">gap 5 pts · Polymarket cheaper</span><span class="ok">Bought UP 0.41 · $50 · 3 ms</span></div>
       <div class="row a"><span>09:31:40.870</span><span class="t">gap 3 pts</span><span>Passed · under 4</span></div>
       <div class="row a"><span>10:05:11.004</span><span class="t">gap 6 pts · Kalshi cheaper</span><span class="ok">Bought YES 0.38 · $50 · cap reached</span></div>
       <button class="btn go a" id="go" data-plan="Go live (demo)">Go live →</button>
-      <div class="hint">Illustration. Also from Codex, Cursor, or the web app. Swap the gap for weather, a headline, a score.</div>
+      <div class="hint">Illustration. Swap the gap for weather, a headline, a score.</div>
     </div>
   </div>
 </section>
@@ -190,7 +182,6 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
   <div class="eyebrow">FAQ</div>
   <details open><summary>Do you hold my funds?</summary><p>No. Your account, your keys. We only place and cancel orders in your name. Revoke any time.</p></details>
   <details><summary>Which markets?</summary><p>Everything Kalshi and Polymarket list: weather, politics, economics, sports, crypto, culture.</p></details>
-  <details><summary>How fast?</summary><p>Co-located next to the exchange’s matching engine. Our code adds under 2 ms. Fibre feed on request.</p></details>
   <details><summary>Will it make money?</summary><p>That is your rule’s job. Ours: run it fast, within your limits, and show you exactly what it did.</p></details>
 </section>
 
@@ -248,19 +239,23 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
   function at(ms,fn){timers.push(setTimeout(fn,ms));}
   function step(i){steps.forEach(function(s,j){s.classList.toggle('on',j===i);});}
   function reset(){timers.forEach(clearTimeout);timers=[];typed.textContent='';typed.classList.remove('done');items.forEach(function(x){x.classList.remove('on');});go.classList.remove('on');step(0);}
+  var CL=['Claude','Codex','Cursor','Web app'],ci=0,cbtn=[].slice.call(document.querySelectorAll('#clients button'));
+  function setClient(i){ci=i;cbtn.forEach(function(b,j){b.classList.toggle('on',j===i);});[].slice.call(document.querySelectorAll('#dm .cl')).forEach(function(e){e.textContent=CL[i];});}
+  cbtn.forEach(function(b,j){b.addEventListener('click',function(){setClient(j);play();});});
+  function next(){setClient((ci+1)%CL.length);play();}
   function play(){
     reset();
     if(reduce){typed.textContent=txt;typed.classList.add('done');items.forEach(function(x){x.classList.add('on');});go.classList.add('on');return;}
     var i=0,t=0;
-    function type(){if(i<=txt.length){typed.textContent=txt.slice(0,i);i++;at(26,type);}else{typed.classList.add('done');at(500,rest);}}
+    function type(){if(i<=txt.length){typed.textContent=txt.slice(0,i);i++;at(42,type);}else{typed.classList.add('done');at(900,rest);}}
     function rest(){
       var k=0;
       items.forEach(function(x){
-        var d=x.classList.contains('row')?650:x.classList.contains('ask')||x.classList.contains('yes')?900:380;
+        var d=x.classList.contains('row')?1600:x.classList.contains('ask')||x.classList.contains('yes')?2400:900;
         t+=d;
         (function(x,tt){at(tt,function(){x.classList.add('on');if(x.classList.contains('tool')&&k++===0)step(1);if(x.classList.contains('row'))step(2);if(x===go)go.classList.add('on');});})(x,t);
       });
-      at(t+6000,play);
+      at(t+9000,next);
     }
     at(400,type);
   }
