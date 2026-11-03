@@ -35,6 +35,9 @@ h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.02em;line-height:1.1;margin:0
 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
 .lead{color:var(--muted);max-width:60ch;margin:-6px 0 24px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+pre{font-family:var(--mono);font-size:14px;line-height:1.6;white-space:pre-wrap;word-break:break-word;background:var(--card);padding:18px 20px;margin:0;border-radius:12px;border:1px solid var(--line);color:var(--fg)}
+pre a{color:var(--accent)}
 .chip{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;min-width:0;color:var(--fg);font-size:17px}
 .chip b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--accent);margin-bottom:8px;font-weight:500}
 .price{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:14px;min-width:0;position:relative}
@@ -100,7 +103,7 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
 .modal input,.modal textarea{font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:11px;width:100%}
 .out{display:none;border-top:1px solid var(--line);padding-top:14px}.out.show{display:grid}
 .okmsg{color:var(--pos)}
-@media (max-width:860px){.grid3{grid-template-columns:1fr}.demo .res{grid-template-columns:1fr}}
+@media (max-width:860px){.grid3,.grid2{grid-template-columns:1fr}.demo .res{grid-template-columns:1fr}}
 @media (max-width:480px){nav ul{display:none}section{padding:36px 0}.demo .screen{padding:16px}.demo .me,.demo .bot{max-width:100%;font-size:16px}}
 @media (prefers-reduced-motion:no-preference){.btn{transition:filter .15s}.btn:hover{filter:brightness(1.1)}}
 @media (prefers-reduced-motion:reduce){.demo .a{opacity:1;transform:none}.demo .go.on{animation:none}.demo .me::after{display:none}}
@@ -110,14 +113,14 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
 <div class="wrap">
 <nav>
   <div class="logo"><i></i>Polybot</div>
-  <ul><li><a href="#demo">Demo</a></li><li><a href="#team">Team</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul>
+  <ul><li><a href="#demo">Demo</a></li><li><a href="#mcp">MCP</a></li><li><a href="#team">Team</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul>
   <div style="display:flex;gap:10px"><button class="btn ghost sm" data-plan="Sign in">Sign in</button><button class="btn sm" data-plan="Get started">Get started</button></div>
 </nav>
 
 <section class="hero">
   <h1>Our bot. <em>Your strategy.</em></h1>
   <p class="sub">A fast, guarded trading bot, already built and co-located next to Kalshi and Polymarket. Plug in your strategy in one sentence.</p>
-  <div class="cta"><button class="btn" data-plan="Plug in my strategy">Plug in my strategy →</button><a class="btn ghost" href="#demo" style="text-decoration:none;display:inline-block">See it</a></div>
+  <div class="cta"><button class="btn" data-plan="Plug in my strategy">Plug in my strategy →</button></div>
   <div class="ticks"><span>Your keys, your account</span><span>Cancel anytime</span><span>Founding cohort: 3 months at half price</span></div>
 </section>
 
@@ -156,6 +159,27 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
     <div class="chip"><b>WEATHER</b>“Buy YES on tomorrow’s NYC rain when the forecast says 70 %+ and the price is under 0.55.”</div>
     <div class="chip"><b>ELECTIONS</b>“When a state’s count crosses my threshold, buy that candidate up to $200, then stop.”</div>
     <div class="chip"><b>CRYPTO</b>“Buy UP when Binance is up 0.10 % in 30 s and the ask is under 0.55. Max $25 per window.”</div>
+  </div>
+</section>
+
+<section id="mcp">
+  <div class="eyebrow">MCP</div>
+  <h2>Talk to Polybot from Claude, Codex or Cursor.</h2>
+  <p class="lead">One entry in your assistant’s config. Seven tools. Your exchange keys never leave Polybot.</p>
+  <div class="grid2">
+    <pre>{
+  "mcpServers": {
+    "polybot": {
+      "url": "https://mcp.polybot.run/v1",
+      "headers": { "Authorization": "Bearer &lt;token&gt;" }
+    }
+  }
+}</pre>
+    <pre>create_bot   backtest   paper_trade
+deploy       pause      kill
+get_fills
+
+For agents: <a href="llms.txt">llms.txt</a> · <a href=".well-known/mcp.json">mcp.json</a></pre>
   </div>
 </section>
 
