@@ -91,15 +91,15 @@ pre{font-family:var(--mono);font-size:13px;white-space:pre-wrap;word-break:break
 <nav>
   <div class="logo"><i></i>Polybot</div>
   <ul><li><a href="#features">Features</a></li><li><a href="#how">How it works</a></li><li><a href="#mcp">MCP</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul>
-  <div style="display:flex;gap:10px"><button class="btn ghost sm" data-plan="Sign in">Sign in</button><button class="btn sm" data-plan="Get started (Free)">Get started</button></div>
+  <div style="display:flex;gap:10px"><button class="btn ghost sm" data-plan="Sign in">Sign in</button><button class="btn sm" data-plan="Get started">Get started</button></div>
 </nav>
 
 <section class="hero">
   <div>
     <h1>Your edge, executed <em>next to the exchange.</em></h1>
     <p class="sub">Describe your strategy in one sentence. Polybot turns it into a bot, backtests it on real Kalshi and Polymarket order books, and fires it next to the exchange before the crowd has refreshed the page. Your keys, your account, your profits.</p>
-    <div class="cta"><button class="btn" data-plan="Build my first bot (Free)">Build your first bot →</button><a class="btn ghost" href="#how" style="text-decoration:none;display:inline-block">See how it works</a></div>
-    <div class="ticks"><span>No credit card</span><span>Free forever plan</span><span>Founding cohort: 3 months of Pro free</span></div>
+    <div class="cta"><button class="btn" data-plan="Build my first bot">Build your first bot →</button><a class="btn ghost" href="#how" style="text-decoration:none;display:inline-block">See how it works</a></div>
+    <div class="ticks"><span>Cancel anytime</span><span>Paper trading on every plan</span><span>Founding cohort: 3 months at half price</span></div>
   </div>
   <div class="prompt">
     <div class="bar"><i></i><i></i><i></i></div>
@@ -184,20 +184,20 @@ get_fills      every fill, priced +1 s later</pre><p>Then it is a conversation: 
 
 <section id="pricing">
   <div class="eyebrow">Pricing</div>
-  <h2>Start free. Scale when you're winning.</h2>
-  <p class="lead">No lock-in, no performance fee, no per-trade cut. Founding cohort gets Pro free for 3 months.</p>
+  <h2>Pay for the machine, not for your wins.</h2>
+  <p class="lead">Every plan is real compute co-located next to the exchange, priced at what it costs us to run it plus a little. No performance fee, no per-trade cut, cancel anytime. Founding cohort: 3 months at half price.</p>
   <div class="grid3">
-    <div class="price"><div class="tier">FREE</div><div class="amt">$0 <small>forever</small></div>
-      <ul><li>Paper trading on live prices</li><li>1 bot</li><li>Backtests on real order books</li><li>Fill and latency log</li></ul>
-      <button class="btn ghost" data-plan="Free — $0">Start free</button></div>
-    <div class="price pop"><div class="badge">POPULAR</div><div class="tier">STARTER</div><div class="amt">$19 <small>/month</small></div>
-      <ul><li>Everything in Free</li><li>Live trading, one venue</li><li>5 live bots</li><li>Daily caps and kill switch</li><li>MCP server for your assistant</li></ul>
-      <button class="btn" data-plan="Starter — $19/month">Upgrade</button></div>
-    <div class="price"><div class="tier">PRO</div><div class="amt">$49 <small>/month</small></div>
-      <ul><li>Everything in Starter</li><li>Kalshi and Polymarket</li><li>25 live bots</li><li>Co-located Binance/Coinbase feeds</li><li>MCP server, unlimited tokens</li></ul>
-      <button class="btn ghost" data-plan="Pro — $49/month">Go pro</button></div>
+    <div class="price"><div class="tier">STARTER</div><div class="amt">$49 <small>/month</small></div>
+      <ul><li>Shared co-located host</li><li>One venue, Kalshi or Polymarket</li><li>3 live bots, unlimited paper bots</li><li>Backtests on real order books</li><li>Daily caps and kill switch</li><li>MCP server for your assistant</li></ul>
+      <button class="btn ghost" data-plan="Starter — $49/month">Start on Starter</button></div>
+    <div class="price pop"><div class="badge">POPULAR</div><div class="tier">PRO</div><div class="amt">$119 <small>/month</small></div>
+      <ul><li>Your own dedicated machine</li><li>Kalshi and Polymarket</li><li>10 live bots</li><li>Co-located Binance/Coinbase feeds</li><li>Fill receipts priced +1 s later</li><li>MCP server, unlimited tokens</li></ul>
+      <button class="btn" data-plan="Pro — $119/month">Go Pro</button></div>
+    <div class="price"><div class="tier">ELITE</div><div class="amt">$349 <small>/month</small></div>
+      <ul><li>Largest dedicated machine, lowest latency we can buy</li><li>Both venues, 25 live bots</li><li>Priority rule review and support</li><li>Institutional fibre market-data line on request, at cost</li><li>Everything in Pro</li></ul>
+      <button class="btn ghost" data-plan="Elite — $349/month">Go Elite</button></div>
   </div>
-  <p class="lead" style="margin-top:16px;font-size:14px">Need more speed? Institutional fibre market-data line on request, billed at cost.</p>
+  <p class="lead" style="margin-top:16px;font-size:14px">Prices are what the hardware and feeds cost us, with a small margin. When cloud prices move, ours follow, in both directions.</p>
 </section>
 
 <section id="faq">
@@ -205,9 +205,9 @@ get_fills      every fill, priced +1 s later</pre><p>Then it is a conversation: 
   <h2>Questions, answered.</h2>
   <details open><summary>What is Polybot?</summary><p>A hosted platform that turns a strategy written in plain English into a trading bot on Kalshi and Polymarket, runs it next to the exchange with hard risk limits, and logs every order with its latency. It is the stack we built and ran with our own money from September to October 2026.</p></details>
   <details><summary>Do you hold my funds?</summary><p>No. On Kalshi you give an API key scoped to trading; on Polymarket you connect your own wallet. We place and cancel orders in your name. You can revoke access at any time.</p></details>
-  <details><summary>Will the bot make money?</summary><p>That depends on your rule, and Polybot is built to find out fast: backtest on real order books in minutes, paper-trade on live prices for free, then go live with hard limits. We ran 170 strategies through this exact loop ourselves. Execution, speed and guards are on us; the edge is yours.</p></details>
+  <details><summary>Will the bot make money?</summary><p>That depends on your rule, and Polybot is built to find out fast: backtest on real order books in minutes, paper-trade on live prices, then go live with hard limits. We ran 170 strategies through this exact loop ourselves. Execution, speed and guards are on us; the edge is yours.</p></details>
   <details><summary>How fast is it?</summary><p>As fast as the venue allows: your bot is co-located in the same cloud region as the exchange’s matching engine, so the round trip is the exchange’s own, not the internet’s. Our code adds under 2 ms, and an alarm fires if it ever does not. For the last microseconds, an institutional fibre market-data line is available on request, billed at cost.</p></details>
-  <details><summary>Can I use it from Claude or Codex?</summary><p>Yes. Polybot ships an MCP server: add one entry to your assistant’s config and it can create, backtest, deploy, pause and kill your bots and read your fills, through seven scoped tools. Your exchange keys stay on Polybot; the assistant never sees them. Available on Starter and Pro.</p></details>
+  <details><summary>Can I use it from Claude or Codex?</summary><p>Yes. Polybot ships an MCP server: add one entry to your assistant’s config and it can create, backtest, deploy, pause and kill your bots and read your fills, through seven scoped tools. Your exchange keys stay on Polybot; the assistant never sees them. Available on every plan.</p></details>
   <details><summary>Which markets?</summary><p>Kalshi and Polymarket 15-minute and hourly crypto markets first (BTC, ETH, SOL, XRP, DOGE, BNB), where our data and backtests live. Other markets on request.</p></details>
 </section>
 
@@ -215,7 +215,7 @@ get_fills      every fill, priced +1 s later</pre><p>Then it is a conversation: 
   <div class="final">
     <h2>Stop watching charts.<br>Start getting there first.</h2>
     <p class="lead" style="margin:12px auto 24px">One sentence from you. A bot that never sleeps, never panics and never misses a kill switch.</p>
-    <button class="btn" data-plan="Build my first bot (final CTA)">Build your first bot — free</button>
+    <button class="btn" data-plan="Build my first bot (final CTA)">Build your first bot</button>
   </div>
 </section>
 
@@ -246,7 +246,7 @@ get_fills      every fill, priced +1 s later</pre><p>Then it is a conversation: 
   var m=document.getElementById('modal'),plan=document.getElementById('plan'),cur='';
   function open(p,rule){cur=p;plan.textContent='Plan: '+p;if(rule)document.getElementById('mrule').value=rule;m.hidden=false;document.getElementById('memail').focus();}
   document.querySelectorAll('[data-plan]').forEach(function(b){b.addEventListener('click',function(){open(b.getAttribute('data-plan'));});});
-  document.getElementById('hp').addEventListener('submit',function(e){e.preventDefault();open('Build my first bot (Free)',document.getElementById('hq').value.trim());});
+  document.getElementById('hp').addEventListener('submit',function(e){e.preventDefault();open('Build my first bot',document.getElementById('hq').value.trim());});
   document.getElementById('mclose').addEventListener('click',function(){m.hidden=true;});
   var KEY='699249b1-1190-4b01-8606-6cb6ebfb86ba';
   document.getElementById('mf').addEventListener('submit',function(e){
