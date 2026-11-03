@@ -46,7 +46,7 @@ Any market listed on Kalshi or Polymarket (weather, politics, economics, sports,
 
 ## Team
 
-Six specialists built it and answer users' strategy questions: statistician, market microstructure, crypto markets, literature review, devil's advocate, quant referee.
+Six specialists built it and answer users' strategy questions: Dave (statistician), Mike (market microstructure), Lee (crypto markets), Anna (research checker: published research and primary sources), Sam (devil's advocate), Priya (quant referee).
 
 ## Disclaimer
 
