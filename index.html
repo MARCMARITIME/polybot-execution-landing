@@ -303,9 +303,10 @@ get_fills</pre><p>“Backtest this on September, then deploy it with a $20 daily
     function run(){step(2);rows.forEach(function(r,k){at(700*k,function(){r.classList.add('on');});});at(700*rows.length+300,function(){go.classList.add('on');});at(700*rows.length+6000,play);}
     at(400,type);
   }
-  var started=false;
-  function maybeStart(){if(started)return;var r=document.getElementById('dm').getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0){started=true;play();}}
-  addEventListener('scroll',maybeStart,{passive:true});maybeStart();
+  var started=false,dm=document.getElementById('dm');
+  function start(){if(started)return;started=true;play();}
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){if(es.some(function(e){return e.isIntersecting;}))start();},{threshold:.2}).observe(dm);}
+  setTimeout(start,2500);
 })();
 </script>
 </body>
