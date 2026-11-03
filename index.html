@@ -1,12 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Polybot</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Say your bet in one sentence. Polybot turns it into a bot and runs it next to Kalshi and Polymarket.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: PredictEngine-style single dark page — nav, hero with prompt box, stats band, activity table, 4 features, 3 steps, logbook, 3 pricing tiers, FAQ, final CTA. Deliberately single-theme (dark). */
 :root{--bg:#0b0d10;--bg2:#12151a;--card:#161a20;--line:#242a33;--fg:#f2f4f7;--muted:#8b94a3;--accent:#39d2c0;--accent-ink:#06211e;--pos:#4ade80;--neg:#f87171;
 --sans:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.55;padding-block:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.55;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 a{color:inherit}
 .wrap{max-width:1080px;margin:0 auto}
 nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;flex-wrap:wrap}
@@ -16,13 +20,13 @@ nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;color:var(--mute
 .btn{font:inherit;font-weight:700;font-size:15px;padding:11px 18px;border-radius:8px;border:1px solid transparent;cursor:pointer;background:var(--accent);color:var(--accent-ink)}
 .btn.ghost{background:transparent;color:var(--fg);border-color:var(--line)}
 .btn.sm{padding:8px 14px;font-size:14px}
-.btn:focus,input:focus,textarea:focus,select:focus,summary:focus{outline:2px solid var(--accent);outline-offset:2px}
-section{padding:64px 0}
-.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding:56px 0 40px}
-h1{font-size:clamp(38px,6vw,64px);line-height:1.02;letter-spacing:-.03em;margin:0 0 20px;font-weight:800;text-wrap:balance}
+.btn:focus,input:focus,textarea:focus,summary:focus{outline:2px solid var(--accent);outline-offset:2px}
+section{padding:56px 0}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding:48px 0 32px}
+h1{font-size:clamp(38px,6vw,64px);line-height:1.02;letter-spacing:-.03em;margin:0 0 18px;font-weight:800;text-wrap:balance}
 h1 em{font-style:normal;color:var(--accent)}
-.sub{color:var(--muted);font-size:18px;max-width:52ch;margin:0 0 24px}
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.sub{color:var(--muted);font-size:18px;max-width:44ch;margin:0 0 22px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
 .ticks{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:13px}
 .ticks span::before{content:"✓ ";color:var(--accent)}
 .prompt{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:12px;min-width:0}
@@ -31,31 +35,20 @@ h1 em{font-style:normal;color:var(--accent)}
 .prompt .in{display:flex;gap:8px}.prompt input{flex:1;min-width:0;font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px}
 h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.02em;line-height:1.1;margin:0 0 10px;font-weight:800;text-wrap:balance}
 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
-.lead{color:var(--muted);max-width:60ch;margin:0 0 32px}
+.lead{color:var(--muted);max-width:60ch;margin:0 0 28px}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.stats div{background:var(--bg2);padding:20px;min-width:0}
+.stats div{background:var(--bg2);padding:18px;min-width:0}
 .stats .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.stats .v{font-size:34px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;margin-top:4px;line-height:1.1}
+.stats .v{font-size:32px;font-weight:800;letter-spacing:-.02em;margin-top:4px;line-height:1.1}
 .stats .v.acc{color:var(--accent)}
 .stats .n{font-size:12px;color:var(--muted);margin-top:6px}
-.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--bg2)}
-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px;min-width:620px}
-th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);white-space:nowrap}
-th{color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
-tr:last-child td{border-bottom:0}
-.pos{color:var(--pos)}.neg{color:var(--neg)}
-.live{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
-.live b{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block}
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;min-width:0;display:grid;gap:8px;align-content:start}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0;display:grid;gap:8px;align-content:start}
 .card .num{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.12em}
 .card h3{margin:0;font-size:18px;font-weight:700}
 .card p{margin:0;color:var(--muted);font-size:15px}
-.quote{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;display:grid;gap:10px;min-width:0}
-.quote q{font-size:17px;font-weight:600;quotes:"“" "”"}
-.quote small{color:var(--muted);font-family:var(--mono);font-size:12px}
 .price{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;display:grid;gap:14px;min-width:0;position:relative}
 .price.pop{border-color:var(--accent)}
 .price .badge{position:absolute;top:-12px;right:18px;background:var(--accent);color:var(--accent-ink);font-family:var(--mono);font-size:11px;letter-spacing:.1em;padding:4px 10px;border-radius:999px;font-weight:600}
@@ -69,183 +62,206 @@ summary{cursor:pointer;font-weight:700;font-size:17px;list-style:none;display:fl
 summary::after{content:"+";color:var(--accent);font-family:var(--mono)}
 details[open] summary::after{content:"–"}
 details p{color:var(--muted);margin:10px 0 0;max-width:70ch}
-.final{text-align:center;background:linear-gradient(180deg,var(--bg2),var(--bg));border:1px solid var(--line);border-radius:16px;padding:56px 24px}
+.final{text-align:center;background:linear-gradient(180deg,var(--bg2),var(--bg));border:1px solid var(--line);border-radius:16px;padding:48px 24px}
 footer{color:var(--muted);font-size:13px;padding:28px 0 48px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+pre{font-family:var(--mono);font-size:13px;white-space:pre-wrap;word-break:break-word;background:var(--bg);padding:12px;margin:0;border-radius:8px;border:1px solid var(--line)}
+/* demo */
+.demo{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.demo .steps{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line)}
+.demo .steps div{padding:12px 16px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-right:1px solid var(--line);transition:color .3s,background .3s}
+.demo .steps div:last-child{border-right:0}
+.demo .steps div.on{color:var(--accent);background:var(--bg2)}
+.demo .screen{padding:22px;min-height:300px;display:grid;gap:14px;align-content:start;font-family:var(--mono);font-size:14px}
+.demo .typed{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-height:52px;color:var(--fg);font-size:15px}
+.demo .typed::after{content:"";display:inline-block;width:8px;height:17px;background:var(--accent);vertical-align:-3px;margin-left:2px;animation:blink 1s steps(2) infinite}
+.demo .typed.done::after{display:none}
+.demo .ln{display:flex;gap:12px;align-items:baseline;color:var(--muted);opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s}
+.demo .ln.on{opacity:1;transform:none}
+.demo .ln b{color:var(--accent);font-weight:500;min-width:16px}
+.demo .ln .t{color:var(--fg)}
+.demo .ln .ok{color:var(--pos)}
+.demo .ln .no{color:var(--muted)}
+.demo .row{display:grid;grid-template-columns:52px 1fr 1fr 56px 1fr;gap:12px;font-size:13px;color:var(--muted);opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s;padding:8px 0;border-bottom:1px solid var(--line)}
+.demo .row.on{opacity:1;transform:none}
+.demo .row .t{color:var(--fg)}
+.demo .go{justify-self:start;opacity:0;transition:opacity .4s}
+.demo .go.on{opacity:1;animation:pulse 1.6s ease-in-out infinite}
+.demo .hint{font-family:var(--sans);font-size:13px;color:var(--muted)}
+@keyframes blink{to{visibility:hidden}}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(57,210,192,.18)}}
 .modal[hidden]{display:none}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-left,0px));z-index:20}
-.modal .box{background:var(--card);border:1px solid var(--line);border-radius:14px;max-width:540px;width:100%;padding:26px;display:grid;gap:12px;max-height:90vh;overflow:auto}
+.modal .box{background:var(--card);border:1px solid var(--line);border-radius:14px;max-width:520px;width:100%;padding:26px;display:grid;gap:12px;max-height:90vh;overflow:auto}
 .modal h2{font-size:24px}
 .modal p{margin:0;color:var(--muted)}
 label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
 .modal input,.modal textarea{font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:11px;width:100%}
-.out{display:none;gap:10px;border-top:1px solid var(--line);padding-top:14px}.out.show{display:grid}
-pre{font-family:var(--mono);font-size:13px;white-space:pre-wrap;word-break:break-word;background:var(--bg);padding:12px;margin:0;border-radius:8px;border:1px solid var(--line)}
-.addr{font-family:var(--mono);color:var(--accent);user-select:all}
-.ok{color:var(--pos);font-size:14px}
-@media (max-width:860px){.hero{grid-template-columns:1fr}.stats,.grid4{grid-template-columns:repeat(2,1fr)}.grid3,.grid2{grid-template-columns:1fr}}
-@media (max-width:480px){.stats,.grid4{grid-template-columns:1fr}nav ul{display:none}section{padding:44px 0}}
+.out{display:none;border-top:1px solid var(--line);padding-top:14px}.out.show{display:grid}
+.okmsg{color:var(--pos)}
+@media (max-width:860px){.hero{grid-template-columns:1fr}.stats,.grid4{grid-template-columns:repeat(2,1fr)}.grid3,.grid2{grid-template-columns:1fr}.demo .row{grid-template-columns:52px 1fr 70px;}.demo .row .s,.demo .row .p{display:none}}
+@media (max-width:480px){.stats,.grid4{grid-template-columns:1fr}nav ul{display:none}section{padding:40px 0}.demo .steps div{padding:10px 8px;font-size:10px}}
 @media (prefers-reduced-motion:no-preference){.btn{transition:filter .15s}.btn:hover{filter:brightness(1.1)}}
+@media (prefers-reduced-motion:reduce){.demo .ln,.demo .row,.demo .go{opacity:1;transform:none;animation:none}.demo .typed::after{display:none}}
 </style>
-
+</head>
+<body>
 <div class="wrap">
 <nav>
   <div class="logo"><i></i>Polybot</div>
-  <ul><li><a href="#features">Features</a></li><li><a href="#how">How it works</a></li><li><a href="#mcp">MCP</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul>
+  <ul><li><a href="#demo">Demo</a></li><li><a href="#how">How it works</a></li><li><a href="#mcp">MCP</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul>
   <div style="display:flex;gap:10px"><button class="btn ghost sm" data-plan="Sign in">Sign in</button><button class="btn sm" data-plan="Get started">Get started</button></div>
 </nav>
 
 <section class="hero">
   <div>
-    <h1>Your edge, executed <em>next to the exchange.</em></h1>
-    <p class="sub">Describe your strategy in one sentence. Polybot turns it into a bot, lets you paper-trade it on live prices, then fires it next to the exchange before the crowd has refreshed the page. Weather, elections, sports, crypto: any market with a price. Your keys, your account, your profits.</p>
-    <div class="cta"><button class="btn" data-plan="Build my first bot">Build your first bot →</button><a class="btn ghost" href="#how" style="text-decoration:none;display:inline-block">See how it works</a></div>
-    <div class="ticks"><span>Cancel anytime</span><span>Paper trading on every plan</span><span>Founding cohort: 3 months at half price</span></div>
+    <h1>Say your bet. <em>Polybot runs it.</em></h1>
+    <p class="sub">One sentence becomes a bot that trades next to Kalshi and Polymarket. Weather, elections, sports, crypto. Your keys, your account.</p>
+    <div class="cta"><button class="btn" data-plan="Build my first bot">Build your first bot →</button><a class="btn ghost" href="#demo" style="text-decoration:none;display:inline-block">Watch the demo</a></div>
+    <div class="ticks"><span>Cancel anytime</span><span>Paper trading included</span><span>Founding cohort: 3 months at half price</span></div>
   </div>
   <div class="prompt">
     <div class="bar"><i></i><i></i><i></i></div>
-    <div class="ex">Buy YES on tomorrow’s NYC rain market when the NWS forecast says 70 % or more and the price is under 0.55. Max $40 a day.</div>
-    <form class="in" id="hp" novalidate><input id="hq" placeholder="Describe your trading bot…" aria-label="Describe your trading bot"><button class="btn" type="submit">↵</button></form>
+    <div class="ex">Buy YES on tomorrow’s NYC rain market when the NWS forecast says 70 %+ and the price is under 0.55. Max $40 a day.</div>
+    <form class="in" id="hp" novalidate><input id="hq" placeholder="Describe your bot…" aria-label="Describe your bot"><button class="btn" type="submit">↵</button></form>
   </div>
 </section>
 
 <div class="stats">
-  <div><div class="k">Markets</div><div class="v">Any</div><div class="n">everything listed on Kalshi and Polymarket: weather, politics, sports, economy, crypto, culture</div></div>
-  <div><div class="k">Signals</div><div class="v">Yours</div><div class="n">forecasts, prices, news wires, polls, scores, on-chain data, your own model</div></div>
-  <div><div class="k">Sentence to live bot</div><div class="v acc">Minutes</div><div class="n">type it, read the rule back, paper-trade, go live</div></div>
-  <div><div class="k">Placement</div><div class="v acc">Co-located</div><div class="n">next to the Kalshi and Polymarket matching engines</div></div>
+  <div><div class="k">Markets</div><div class="v">Any</div><div class="n">everything on Kalshi and Polymarket</div></div>
+  <div><div class="k">Signals</div><div class="v">Yours</div><div class="n">forecasts, news, polls, scores, prices</div></div>
+  <div><div class="k">Sentence to bot</div><div class="v acc">Minutes</div><div class="n">type, check, paper-trade, go live</div></div>
+  <div><div class="k">Placement</div><div class="v acc">Co-located</div><div class="n">next to the exchange</div></div>
 </div>
 
-<section>
-  <div class="eyebrow">Worked example</div>
-  <h2>Say it. Polybot runs it. Weather, elections, crypto, anything with a price.</h2>
-  <p class="lead">Here is how a weather bot comes to life. Swap the weather for a rate decision, a box-office opening, a game or a tweet count: the three steps never change.</p>
-  <div class="grid3">
-    <div class="card"><div class="num">1 · YOU TYPE</div><p>“Buy YES on <em>NYC high temperature above 60°F tomorrow</em> whenever the National Weather Service forecast is at least 5°F above the strike and the price is under 0.60. Max $50 a day.”</p></div>
-    <div class="card"><div class="num">2 · POLYBOT BUILDS</div><p>It reads the rule back to you line by line, wires the NWS forecast feed and the Kalshi order book to it, attaches your daily cap and a kill switch, and starts in paper trading on live prices. You flip it live when the journal looks right.</p></div>
-    <div class="card"><div class="num">3 · YOU WATCH THE JOURNAL</div><p>Every decision is written down: what the signal said, what the price was, why the bot bought or passed. Example of a morning below.</p></div>
+<section id="demo">
+  <div class="eyebrow">Demo</div>
+  <h2>One sentence. One bot. Watch.</h2>
+  <div class="demo" id="dm">
+    <div class="steps"><div id="s1" class="on">1 · You say it</div><div id="s2">2 · Polybot builds it</div><div id="s3">3 · It runs</div></div>
+    <div class="screen">
+      <div class="typed" id="typed"></div>
+      <div id="build">
+        <div class="ln"><b>✓</b><span class="t">Market</span><span>Kalshi · NYC high above 60°F tomorrow</span></div>
+        <div class="ln"><b>✓</b><span class="t">Signal</span><span>National Weather Service forecast</span></div>
+        <div class="ln"><b>✓</b><span class="t">Rule</span><span>forecast ≥ strike + 5°F and price &lt; 0.60</span></div>
+        <div class="ln"><b>✓</b><span class="t">Guards</span><span>$50 a day · kill switch</span></div>
+        <div class="ln"><b>✓</b><span class="t">Mode</span><span class="ok">paper trading on live prices</span></div>
+      </div>
+      <div id="run">
+        <div class="row"><span>07:02</span><span class="t">NYC high &gt; 60°F</span><span class="s">forecast 67°F (+7)</span><span class="p">0.54</span><span class="ok">Bought YES · $27</span></div>
+        <div class="row"><span>07:02</span><span class="t">Chicago high &gt; 55°F</span><span class="s">forecast 58°F (+3)</span><span class="p">0.47</span><span class="no">Passed · margin too small</span></div>
+        <div class="row"><span>07:02</span><span class="t">Miami high &gt; 84°F</span><span class="s">forecast 90°F (+6)</span><span class="p">0.63</span><span class="no">Passed · price too high</span></div>
+        <div class="row"><span>11:30</span><span class="t">Miami high &gt; 84°F</span><span class="s">forecast 91°F (+7)</span><span class="p">0.58</span><span class="ok">Bought YES · $23 · cap reached</span></div>
+        <button class="btn go" id="go" data-plan="Go live (demo)">Go live →</button>
+      </div>
+      <div class="hint">Illustration. Swap the weather for anything with a price.</div>
+    </div>
   </div>
-  <div class="tablewrap" style="margin-top:16px"><table><thead><tr><th>Time (ET)</th><th>Market</th><th>Signal</th><th>Price</th><th>Decision</th></tr></thead><tbody>
-    <tr><td>07:02</td><td>NYC high &gt; 60°F tomorrow</td><td>NWS forecast 67°F (+7)</td><td>0.54</td><td class="pos">Bought YES, $27</td></tr>
-    <tr><td>07:02</td><td>Chicago high &gt; 55°F tomorrow</td><td>NWS forecast 58°F (+3)</td><td>0.47</td><td>Passed: margin under 5°F</td></tr>
-    <tr><td>07:02</td><td>Miami high &gt; 84°F tomorrow</td><td>NWS forecast 90°F (+6)</td><td>0.63</td><td>Passed: price over 0.60</td></tr>
-    <tr><td>11:30</td><td>Miami high &gt; 84°F tomorrow</td><td>NWS forecast 91°F (+7)</td><td>0.58</td><td class="pos">Bought YES, $23 · daily cap reached</td></tr>
-  </tbody></table></div>
-  <p class="lead" style="margin-top:12px;font-size:14px">Example journal, for illustration. Every bot gets the same: a rule you can read, a journal you can audit, limits you set.</p>
 </section>
 
 <section id="features">
-  <div class="eyebrow">Features</div>
-  <h2>Everything you need to win on Kalshi and Polymarket.</h2>
-  <p class="lead">Any strategy you can describe: momentum on the 15-minute markets, cross-venue spreads, latency plays against Binance, copy rules. You bring the idea, Polybot brings the speed, the guards and the receipts.</p>
+  <div class="eyebrow">Built in</div>
+  <h2>Runs while you sleep.</h2>
   <div class="grid4">
-    <div class="card"><div class="num">01 / BUILD</div><h3>Plain-English builder</h3><p>Type what the bot should do. Thirty seconds later you have a checked rule, a decision chart on real past data, and a Go Live button.</p></div>
-    <div class="card"><div class="num">02 / EXECUTE</div><h3>Next to the exchange</h3><p>Your bot runs in the same data-center region as the exchange it trades, Kalshi or Polymarket, with Binance and Coinbase feeds next to it. The lowest latency the venue allows, when a browser tab takes 2 seconds.</p></div>
-    <div class="card"><div class="num">03 / GUARD</div><h3>Sleep-safe guards</h3><p>Daily cap, per-window cap, loss-streak stop, one-click kill switch. Nothing re-arms itself without you.</p></div>
-    <div class="card"><div class="num">04 / REPORT</div><h3>Receipts, not vibes</h3><p>Each fill with the price one second later, so you see exactly how much cheaper you bought than the crowd. Know your edge in dollars, every day.</p></div>
+    <div class="card"><div class="num">BUILD</div><h3>Plain English</h3><p>Type it. Read the rule back. Done.</p></div>
+    <div class="card"><div class="num">EXECUTE</div><h3>Next to the exchange</h3><p>Co-located. The lowest latency the venue allows.</p></div>
+    <div class="card"><div class="num">GUARD</div><h3>Hard limits</h3><p>Daily cap, loss stop, kill switch. Never re-arms itself.</p></div>
+    <div class="card"><div class="num">REPORT</div><h3>A journal</h3><p>Every decision written down, bought or passed, and why.</p></div>
   </div>
 </section>
 
 <section id="how">
   <div class="eyebrow">How it works</div>
-  <h2>From signup to first paper trade in under 3 minutes.</h2>
+  <h2>Three steps.</h2>
   <div class="grid3">
-    <div class="card"><div class="num">STEP 01</div><h3>Connect your account</h3><p>Paste your Kalshi API key or connect your Polymarket wallet. Funds never leave your account; we only place and cancel orders.</p></div>
-    <div class="card"><div class="num">STEP 02</div><h3>Describe your strategy</h3><p>“Buy ETH DOWN below 0.42 when Binance moved less than 0.05 % in 20 s.” The AI writes the rule and backtests it on real order books.</p></div>
-    <div class="card"><div class="num">STEP 03</div><h3>Let it run</h3><p>Paper first, then live when you say so. Watch fills, latency and limits from the dashboard; pull the kill switch any time.</p></div>
+    <div class="card"><div class="num">01</div><h3>Connect</h3><p>Kalshi API key or Polymarket wallet. Funds stay in your account.</p></div>
+    <div class="card"><div class="num">02</div><h3>Describe</h3><p>One sentence. Polybot writes the rule and shows it to you.</p></div>
+    <div class="card"><div class="num">03</div><h3>Run</h3><p>Paper first. Live when you say so. Kill switch any time.</p></div>
   </div>
 </section>
 
 <section id="mcp">
-  <div class="eyebrow">Bring your own assistant</div>
-  <h2>Already talk to Claude, Codex or Cursor? So does Polybot.</h2>
-  <p class="lead">Add the Polybot MCP server to the assistant you already use. It gets seven tools and nothing else: it can design, backtest, paper-trade and deploy your bots, read every fill, pause or kill them. Your exchange keys never leave Polybot, and your assistant only sees what you allow.</p>
+  <div class="eyebrow">MCP</div>
+  <h2>Use it from Claude, Codex or Cursor.</h2>
+  <p class="lead">Seven tools for your assistant. Your exchange keys never leave Polybot.</p>
   <div class="grid2">
-    <div class="card"><div class="num">ONE LINE IN YOUR CONFIG</div><pre>{
+    <div class="card"><div class="num">YOUR CONFIG</div><pre>{
   "mcpServers": {
     "polybot": {
       "url": "https://mcp.polybot.run/v1",
-      "headers": { "Authorization": "Bearer &lt;your Polybot token&gt;" }
+      "headers": { "Authorization": "Bearer &lt;token&gt;" }
     }
   }
-}</pre><p>Works with Claude Desktop and Claude Code, OpenAI Codex, Cursor, and any MCP-capable client.</p></div>
-    <div class="card"><div class="num">SEVEN TOOLS, SCOPED BY YOU</div><pre>create_bot     describe a rule, get a bot
-backtest       run it on real order books
-paper_trade    live prices, no money
-deploy         go live under your caps
-pause          stop placing, keep positions
-kill           cancel everything, now
-get_fills      every fill, priced +1 s later</pre><p>Then it is a conversation: “Backtest this on September, show me the chart, deploy it with a $20 daily cap.” Your assistant does the clicking.</p></div>
+}</pre></div>
+    <div class="card"><div class="num">TOOLS</div><pre>create_bot    backtest    paper_trade
+deploy        pause       kill
+get_fills</pre><p>“Backtest this on September, then deploy it with a $20 daily cap.”</p></div>
   </div>
 </section>
 
 <section>
-  <div class="eyebrow">What traders build</div>
-  <h2>Six bots you can describe before your coffee cools.</h2>
-  <p class="lead">Each one is a single sentence in the builder. Polybot writes the rule, backtests it where history exists, paper-trades it live, and shows you the chart before you risk a cent. Price feeds, news wires, polls, scores, on-chain data: if you can name the signal, your bot can read it.</p>
+  <div class="eyebrow">Examples</div>
+  <h2>Six bots, six sentences.</h2>
   <div class="grid3">
-    <div class="card"><div class="num">MOMENTUM · BTC 15-MIN</div><h3>Ride the Binance move</h3><p>“Buy UP when Binance is up 0.10 % in the last 30 s and the ask is still under 0.55. Max $25 per window.” Polymarket reprices late; your bot does not.</p></div>
-    <div class="card"><div class="num">VALUE · ETH HOURLY</div><h3>Buy below your probability</h3><p>“Buy NO whenever the ask is 8 points under my model’s probability. Stop for the day after 3 losses.” Your model, our execution, hard limits built in.</p></div>
-    <div class="card"><div class="num">SPREAD · KALSHI × POLYMARKET</div><h3>Same event, two prices</h3><p>“When the same BTC window is 6 points cheaper on Kalshi than on Polymarket, buy the cheap side, max $50.” One rule, two venues, one log.</p></div>
-    <div class="card"><div class="num">HEADLINE · RATE DECISION</div><h3>Trade the news, not the recap</h3><p>“The second a major wire reports the Fed decision, buy the matching side on Kalshi if it is still under 0.90. Max $100, once.” Your bot reads the wire; the crowd is still refreshing.</p></div>
-    <div class="card"><div class="num">POLLS · ELECTION NIGHT</div><h3>Count faster than the pundits</h3><p>“When the reported count in a state crosses my model’s threshold, buy that candidate’s market up to $200, then stop.” Your numbers, your rule, your limits.</p></div>
-    <div class="card"><div class="num">SCORES · LIVE SPORTS</div><h3>Buy the momentum swing</h3><p>“Buy the leader’s NO when the live win probability drops 15 points in two minutes and the price has not moved yet.” The game moves in seconds; so does your bot.</p></div>
+    <div class="card"><div class="num">CRYPTO</div><p>“Buy UP when Binance is up 0.10 % in 30 s and the ask is under 0.55. Max $25 per window.”</p></div>
+    <div class="card"><div class="num">WEATHER</div><p>“Buy YES on tomorrow’s NYC rain when the forecast says 70 %+ and the price is under 0.55.”</p></div>
+    <div class="card"><div class="num">RATES</div><p>“The second a wire reports the Fed decision, buy the matching side if it is under 0.90. Once.”</p></div>
+    <div class="card"><div class="num">ELECTIONS</div><p>“When a state’s count crosses my threshold, buy that candidate up to $200, then stop.”</p></div>
+    <div class="card"><div class="num">SPORTS</div><p>“Buy the leader’s NO when live win probability drops 15 points in two minutes.”</p></div>
+    <div class="card"><div class="num">TWO VENUES</div><p>“When the same market is 6 points cheaper on Kalshi than Polymarket, buy the cheap side.”</p></div>
   </div>
 </section>
 
 <section id="pricing">
   <div class="eyebrow">Pricing</div>
   <h2>Pay for the machine, not for your wins.</h2>
-  <p class="lead">Every plan is real compute co-located next to the exchange, priced at what it costs us to run it plus a little. No performance fee, no per-trade cut, cancel anytime. Founding cohort: 3 months at half price.</p>
+  <p class="lead">Real compute next to the exchange, at cost plus a little. No performance fee. Founding cohort: 3 months at half price.</p>
   <div class="grid3">
     <div class="price"><div class="tier">STARTER</div><div class="amt">$49 <small>/month</small></div>
-      <ul><li>Shared co-located host</li><li>One venue, Kalshi or Polymarket</li><li>3 live bots, unlimited paper bots</li><li>Backtests on real order books</li><li>Daily caps and kill switch</li><li>MCP server for your assistant</li></ul>
-      <button class="btn ghost" data-plan="Starter — $49/month">Start on Starter</button></div>
+      <ul><li>Shared co-located host</li><li>One venue</li><li>3 live bots</li><li>Caps, kill switch, MCP</li></ul>
+      <button class="btn ghost" data-plan="Starter — $49/month">Start</button></div>
     <div class="price pop"><div class="badge">POPULAR</div><div class="tier">PRO</div><div class="amt">$119 <small>/month</small></div>
-      <ul><li>Your own dedicated machine</li><li>Kalshi and Polymarket</li><li>10 live bots</li><li>Co-located Binance/Coinbase feeds</li><li>Fill receipts priced +1 s later</li><li>MCP server, unlimited tokens</li></ul>
+      <ul><li>Your own dedicated machine</li><li>Kalshi and Polymarket</li><li>10 live bots</li><li>Co-located price feeds</li></ul>
       <button class="btn" data-plan="Pro — $119/month">Go Pro</button></div>
     <div class="price"><div class="tier">ELITE</div><div class="amt">$349 <small>/month</small></div>
-      <ul><li>Largest dedicated machine, lowest latency we can buy</li><li>Both venues, 25 live bots</li><li>Priority rule review and support</li><li>Institutional fibre market-data line on request, at cost</li><li>Everything in Pro</li></ul>
+      <ul><li>Largest machine, lowest latency</li><li>25 live bots</li><li>Priority support</li><li>Institutional fibre feed on request, at cost</li></ul>
       <button class="btn ghost" data-plan="Elite — $349/month">Go Elite</button></div>
   </div>
-  <p class="lead" style="margin-top:16px;font-size:14px">Prices are what the hardware and feeds cost us, with a small margin. When cloud prices move, ours follow, in both directions.</p>
 </section>
 
 <section id="faq">
   <div class="eyebrow">FAQ</div>
-  <h2>Questions, answered.</h2>
-  <details open><summary>What is Polybot?</summary><p>A hosted platform that turns a strategy written in plain English into a trading bot on Kalshi and Polymarket, runs it next to the exchange with hard risk limits, and logs every order with its latency. Built by traders who ran it live before opening it to you.</p></details>
-  <details><summary>Do you hold my funds?</summary><p>No. On Kalshi you give an API key scoped to trading; on Polymarket you connect your own wallet. We place and cancel orders in your name. You can revoke access at any time.</p></details>
-  <details><summary>Will the bot make money?</summary><p>That depends on your rule, and Polybot is built to find out fast: backtest on real order books in minutes, paper-trade on live prices, then go live with hard limits. We ran 170 strategies through this exact loop ourselves. Execution, speed and guards are on us; the edge is yours.</p></details>
-  <details><summary>How fast is it?</summary><p>As fast as the venue allows: your bot is co-located in the same cloud region as the exchange’s matching engine, so the round trip is the exchange’s own, not the internet’s. Our code adds under 2 ms, and an alarm fires if it ever does not. For the last microseconds, an institutional fibre market-data line is available on request, billed at cost.</p></details>
-  <details><summary>Can I use it from Claude or Codex?</summary><p>Yes. Polybot ships an MCP server: add one entry to your assistant’s config and it can create, backtest, deploy, pause and kill your bots and read your fills, through seven scoped tools. Your exchange keys stay on Polybot; the assistant never sees them. Available on every plan.</p></details>
-  <details><summary>Which markets?</summary><p>Every market Kalshi and Polymarket list: weather, politics, economics, sports, crypto, culture and more. Backtests use real order-book history where it exists; everything else starts in paper trading on live prices, which is often the better test anyway.</p></details>
+  <h2>Questions.</h2>
+  <details open><summary>What is Polybot?</summary><p>A sentence in, a bot out. It runs next to Kalshi and Polymarket with hard limits and writes down every decision.</p></details>
+  <details><summary>Do you hold my funds?</summary><p>No. Your account, your keys. We only place and cancel orders in your name. Revoke any time.</p></details>
+  <details><summary>Which markets?</summary><p>Everything Kalshi and Polymarket list: weather, politics, economics, sports, crypto, culture.</p></details>
+  <details><summary>How fast?</summary><p>Co-located next to the exchange’s matching engine. Our code adds under 2 ms. Institutional fibre feed on request, at cost.</p></details>
+  <details><summary>Will it make money?</summary><p>That is your rule’s job. Ours: run it fast, within your limits, and show you exactly what it did.</p></details>
 </section>
 
 <section>
   <div class="final">
-    <h2>Stop watching charts.<br>Start getting there first.</h2>
-    <p class="lead" style="margin:12px auto 24px">One sentence from you. A bot that never sleeps, never panics and never misses a kill switch.</p>
+    <h2>Say your bet.</h2>
+    <p class="lead" style="margin:10px auto 22px">A bot that never sleeps and never misses a kill switch.</p>
     <button class="btn" data-plan="Build my first bot (final CTA)">Build your first bot</button>
   </div>
 </section>
 
-<footer><span>© 2026 Polybot. Examples on this page are illustrations, not guarantees of future results. Trading involves risk of loss.</span><span>Kalshi · Polymarket</span></footer>
+<footer><span>© 2026 Polybot. Examples are illustrations, not guarantees. Trading involves risk of loss.</span><span>Kalshi · Polymarket</span></footer>
 </div>
 
 <div id="modal" class="modal" hidden>
   <div class="box" role="dialog" aria-labelledby="mt">
-    <h2 id="mt">Signups open with the next cohort</h2>
-    <p>We onboard new accounts in small cohorts so every rule is reviewed by hand before it goes live. The current cohort is full. Leave your e-mail and we write to you the day a seat opens, with your plan reserved at today's price.</p>
+    <h2 id="mt">Next cohort opens soon</h2>
+    <p>The current cohort is full. Leave your e-mail: we write to you the day a seat opens, your plan held at today’s price.</p>
     <p id="plan" style="font-family:var(--mono);font-size:13px;color:var(--accent)"></p>
     <form id="mf" novalidate>
       <label for="memail">Your e-mail<input id="memail" type="email" placeholder="you@example.com" autocomplete="email"></label>
-      <label for="mrule">Your rule, optional<textarea id="mrule" rows="2"></textarea></label>
+      <label for="mrule">Your bot, optional<textarea id="mrule" rows="2"></textarea></label>
       <div style="display:flex;gap:10px;flex-wrap:wrap"><button type="submit" class="btn">Reserve my seat</button><button type="button" class="btn ghost" id="mclose">Not now</button></div>
       <div class="out" id="mout">
-        <p id="msent" hidden>Seat reserved. We write to you the day it opens, with your plan held at today's price.</p>
-        <p id="merr" hidden>We could not send that. Send this to <span class="addr">PILOT-ADDRESS@TO-BE-SET</span> and your seat is reserved.</p>
-        <pre id="mmsg" hidden></pre>
-        <div id="mcopyrow" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center" hidden><button type="button" class="btn ghost sm" id="mcopy">Copy message</button><span class="ok" id="mok" hidden>Copied.</span></div>
+        <p id="msent" class="okmsg" hidden>Seat reserved. We write to you the day it opens.</p>
+        <p id="merr" hidden>We could not send that. Please try again in a minute.</p>
       </div>
     </form>
   </div>
@@ -264,17 +280,33 @@ get_fills      every fill, priced +1 s later</pre><p>Then it is a conversation: 
     var em=document.getElementById('memail').value.trim(),rule=document.getElementById('mrule').value.trim()||'(not given)';
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){document.getElementById('memail').focus();return;}
     var btn=e.target.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Sending…';
-    var msg='Polybot — seat reservation\nPlan: '+cur+'\nRule: '+rule+'\nContact: '+em+'\nDate: '+new Date().toISOString().slice(0,10);
-    function fail(){document.getElementById('mmsg').textContent=msg;document.getElementById('mmsg').hidden=false;document.getElementById('mcopyrow').hidden=false;document.getElementById('merr').hidden=false;document.getElementById('mout').classList.add('show');btn.disabled=false;btn.textContent='Reserve my seat';}
-    function done(){document.getElementById('msent').hidden=false;document.getElementById('mout').classList.add('show');btn.textContent='Reserved';}
-    if(KEY.indexOf('TO-BE-SET')>=0){fail();return;}
+    function fail(){document.getElementById('merr').hidden=false;document.getElementById('mout').classList.add('show');btn.disabled=false;btn.textContent='Reserve my seat';}
+    function done(){document.getElementById('merr').hidden=true;document.getElementById('msent').hidden=false;document.getElementById('mout').classList.add('show');btn.textContent='Reserved';}
     fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({access_key:KEY,subject:'Polybot — seat reservation ('+cur+')',from_name:'Polybot landing',email:em,plan:cur,rule:rule,botcheck:''})})
       .then(function(r){return r.json()}).then(function(j){if(j&&j.success)done();else fail();}).catch(fail);
   });
-  document.getElementById('mcopy').addEventListener('click',function(){
-    var t=document.getElementById('mmsg'),ok=document.getElementById('mok');
-    function fb(){var r=document.createRange();r.selectNodeContents(t);var s=getSelection();s.removeAllRanges();s.addRange(r);}
-    try{navigator.clipboard.writeText(t.textContent).then(function(){ok.hidden=false},fb)}catch(err){fb()}
-  });
+
+  /* demo loop */
+  var txt='Buy YES on “NYC high temperature above 60°F tomorrow” when the NWS forecast is at least 5°F above the strike and the price is under 0.60. Max $50 a day.';
+  var typed=document.getElementById('typed'),lns=[].slice.call(document.querySelectorAll('#build .ln')),rows=[].slice.call(document.querySelectorAll('#run .row')),go=document.getElementById('go');
+  var steps=[document.getElementById('s1'),document.getElementById('s2'),document.getElementById('s3')];
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,timers=[];
+  function at(ms,fn){timers.push(setTimeout(fn,ms));}
+  function step(i){steps.forEach(function(s,j){s.classList.toggle('on',j===i);});}
+  function reset(){timers.forEach(clearTimeout);timers=[];typed.textContent='';typed.classList.remove('done');lns.concat(rows).forEach(function(x){x.classList.remove('on');});go.classList.remove('on');step(0);}
+  function play(){
+    reset();
+    if(reduce){typed.textContent=txt;typed.classList.add('done');lns.concat(rows).forEach(function(x){x.classList.add('on');});go.classList.add('on');return;}
+    var i=0,sp=28;
+    function type(){if(i<=txt.length){typed.textContent=txt.slice(0,i);i++;at(sp,type);}else{typed.classList.add('done');at(500,build);}}
+    function build(){step(1);lns.forEach(function(l,k){at(350*k,function(){l.classList.add('on');});});at(350*lns.length+900,run);}
+    function run(){step(2);rows.forEach(function(r,k){at(700*k,function(){r.classList.add('on');});});at(700*rows.length+300,function(){go.classList.add('on');});at(700*rows.length+6000,play);}
+    at(400,type);
+  }
+  var started=false;
+  function maybeStart(){if(started)return;var r=document.getElementById('dm').getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0){started=true;play();}}
+  addEventListener('scroll',maybeStart,{passive:true});maybeStart();
 })();
 </script>
+</body>
+</html>
