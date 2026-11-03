@@ -36,6 +36,10 @@ Signups open with the next cohort. Current cohort is full. To reserve a seat for
 
 Founding cohort: 3 months at half price.
 
+## Latency
+
+Measured, not assumed: continuous round-trip probes from inside the exchange's cloud region, availability zone by availability zone, to find the edge closest to the matching engine; machines are relocated to the nearest placement when the measurement moves. Every fill reports its reaction time.
+
 ## Markets and signals
 
 Any market listed on Kalshi or Polymarket (weather, politics, economics, sports, crypto, culture). Signals: prices, forecasts, news wires, polls, scores, on-chain data, the user's own model.
