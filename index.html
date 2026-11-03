@@ -98,6 +98,7 @@ footer{color:var(--muted);font-size:13px;padding:28px 0 48px;border-top:1px soli
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-left,0px));z-index:20}
 .modal .box{background:var(--card);border:1px solid var(--line);border-radius:14px;max-width:520px;width:100%;padding:26px;display:grid;gap:12px;max-height:90vh;overflow:auto}
 .modal h2{font-size:24px;margin-bottom:6px}
+.modal .box.wide{max-width:900px}.modal .box.wide h2{font-size:clamp(26px,4vw,34px)}.modal .box.wide .lead{margin:0 0 6px}.modal .box.wide .close{justify-self:start}
 .modal p{margin:0;color:var(--muted)}
 label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
 .modal input,.modal textarea{font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:11px;width:100%}
@@ -113,7 +114,7 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
 <div class="wrap">
 <nav>
   <div class="logo"><i></i>Polybot</div>
-  <ul><li><a href="#demo">Demo</a></li><li><a href="#mcp">MCP</a></li><li><a href="#team">Team</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul>
+  <ul><li><a href="#demo">Demo</a></li><li><a href="#mcp" data-pop="pmcp">MCP</a></li><li><a href="#team" data-pop="pteam">Team</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul>
   <div style="display:flex;gap:10px"><button class="btn ghost sm" data-plan="Sign in">Sign in</button><button class="btn sm" data-plan="Get started">Get started</button></div>
 </nav>
 
@@ -161,41 +162,6 @@ label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
   </div>
 </section>
 
-<section id="mcp">
-  <div class="eyebrow">MCP</div>
-  <h2>Plug in from Claude, Cursor or Codex.</h2>
-  <p class="lead">One entry in your assistant’s config, seven tools, and your assistant writes, tests and deploys the strategy on our bot. Your exchange keys never leave Polybot.</p>
-  <div class="grid2">
-    <pre>{
-  "mcpServers": {
-    "polybot": {
-      "url": "https://mcp.polybot.run/v1",
-      "headers": { "Authorization": "Bearer &lt;token&gt;" }
-    }
-  }
-}</pre>
-    <pre>create_bot   backtest   paper_trade
-deploy       pause      kill
-get_fills
-
-For agents: <a href="llms.txt">llms.txt</a> · <a href=".well-known/mcp.json">mcp.json</a></pre>
-  </div>
-</section>
-
-<section id="team">
-  <div class="eyebrow">Built by</div>
-  <h2>Six specialists. One bot.</h2>
-  <p class="lead">They built it. They also answer you: ask them to review or sharpen your strategy.</p>
-  <div class="grid3">
-    <div class="chip"><b>STATISTICIAN</b>Pre-registered protocols, confidence intervals, no cherry-picking.</div>
-    <div class="chip"><b>MICROSTRUCTURE</b>How Kalshi and Polymarket match, fee and settle orders, millisecond by millisecond.</div>
-    <div class="chip"><b>CRYPTO MARKETS</b>Binance and Coinbase feeds, perpetuals, on-chain settlement.</div>
-    <div class="chip"><b>LITERATURE</b>Every claim checked against published research and primary sources.</div>
-    <div class="chip"><b>DEVIL’S ADVOCATE</b>Attacks every result before it ships.</div>
-    <div class="chip"><b>QUANT REFEREE</b>Independent written verdict on every study. Nothing goes live without it.</div>
-  </div>
-</section>
-
 <section id="pricing">
   <div class="eyebrow">Pricing</div>
   <h2>Pay for the machine, not for your wins.</h2>
@@ -208,7 +174,7 @@ For agents: <a href="llms.txt">llms.txt</a> · <a href=".well-known/mcp.json">mc
       <ul><li>Your own dedicated machine</li><li>Both venues · 10 live bots</li><li>Co-located price feeds</li></ul>
       <button class="btn" data-plan="Pro — $119/month">Go Pro</button></div>
     <div class="price"><div class="tier">ELITE</div><div class="amt">$349 <small>/month</small></div>
-      <ul><li>Largest machine, lowest latency</li><li>25 live bots · strategy review by the team</li><li>Institutional fibre feed at cost</li></ul>
+      <ul><li>Largest machine, lowest latency</li><li>25 live bots · strategy review by <a href="#team" data-pop="pteam">the team</a></li><li>Institutional fibre feed at cost</li></ul>
       <button class="btn ghost" data-plan="Elite — $349/month">Go Elite</button></div>
   </div>
 </section>
@@ -227,8 +193,45 @@ For agents: <a href="llms.txt">llms.txt</a> · <a href=".well-known/mcp.json">mc
   </div>
 </section>
 
-<footer><span>© 2026 Polybot. Examples are illustrations, not guarantees. Trading involves risk of loss.</span><span>For AI agents: <a href="llms.txt">llms.txt</a> · <a href=".well-known/mcp.json">mcp.json</a></span></footer>
+<footer><span>© 2026 Polybot. Examples are illustrations, not guarantees. Trading involves risk of loss.</span><span><a href="#mcp" data-pop="pmcp">MCP</a> · <a href="#team" data-pop="pteam">Team</a> · For AI agents: <a href="llms.txt">llms.txt</a> · <a href=".well-known/mcp.json">mcp.json</a></span></footer>
 </div>
+
+<div id="pmcp" class="modal pop" hidden><div class="box wide" role="dialog" aria-labelledby="pmcp-t">
+  <div class="eyebrow">MCP</div>
+  <h2 id="pmcp-t">Plug in from Claude, Cursor or Codex.</h2>
+  <p class="lead">One entry in your assistant’s config, seven tools, and your assistant writes, tests and deploys the strategy on our bot. Your exchange keys never leave Polybot.</p>
+  <div class="grid2">
+    <pre>{
+  "mcpServers": {
+    "polybot": {
+      "url": "https://mcp.polybot.run/v1",
+      "headers": { "Authorization": "Bearer &lt;token&gt;" }
+    }
+  }
+}</pre>
+    <pre>create_bot   backtest   paper_trade
+deploy       pause      kill
+get_fills
+
+For agents: <a href="llms.txt">llms.txt</a> · <a href=".well-known/mcp.json">mcp.json</a></pre>
+  </div>
+  <button type="button" class="btn ghost close" data-close>Close</button>
+</div></div>
+
+<div id="pteam" class="modal pop" hidden><div class="box wide" role="dialog" aria-labelledby="pteam-t">
+  <div class="eyebrow">Built by</div>
+  <h2 id="pteam-t">Six specialists. One bot.</h2>
+  <p class="lead">They built it. They also answer you: ask them to review or sharpen your strategy.</p>
+  <div class="grid3">
+    <div class="chip"><b>STATISTICIAN</b>Pre-registered protocols, confidence intervals, no cherry-picking.</div>
+    <div class="chip"><b>MICROSTRUCTURE</b>How Kalshi and Polymarket match, fee and settle orders, millisecond by millisecond.</div>
+    <div class="chip"><b>CRYPTO MARKETS</b>Binance and Coinbase feeds, perpetuals, on-chain settlement.</div>
+    <div class="chip"><b>LITERATURE</b>Every claim checked against published research and primary sources.</div>
+    <div class="chip"><b>DEVIL’S ADVOCATE</b>Attacks every result before it ships.</div>
+    <div class="chip"><b>QUANT REFEREE</b>Independent written verdict on every study. Nothing goes live without it.</div>
+  </div>
+  <button type="button" class="btn ghost close" data-close>Close</button>
+</div></div>
 
 <div id="modal" class="modal" hidden>
   <div class="box" role="dialog" aria-labelledby="mt">
@@ -253,6 +256,14 @@ For agents: <a href="llms.txt">llms.txt</a> · <a href=".well-known/mcp.json">mc
   function open(p,rule){cur=p;plan.textContent='Plan: '+p;if(rule)document.getElementById('mrule').value=rule;m.hidden=false;document.getElementById('memail').focus();}
   document.querySelectorAll('[data-plan]').forEach(function(b){b.addEventListener('click',function(){open(b.getAttribute('data-plan'));});});
   document.getElementById('mclose').addEventListener('click',function(){m.hidden=true;});
+  function pop(id){var el=document.getElementById(id);if(!el)return;el.hidden=false;el.querySelector('h2').setAttribute('tabindex','-1');el.querySelector('h2').focus();}
+  document.querySelectorAll('[data-pop]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();pop(a.getAttribute('data-pop'));});});
+  document.querySelectorAll('.modal').forEach(function(el){
+    el.addEventListener('click',function(e){if(e.target===el||e.target.hasAttribute('data-close')){el.hidden=true;}});
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.modal').forEach(function(el){el.hidden=true;});});
+  function byHash(){if(location.hash==='#mcp')pop('pmcp');if(location.hash==='#team')pop('pteam');}
+  byHash();window.addEventListener('hashchange',byHash);
   var KEY='699249b1-1190-4b01-8606-6cb6ebfb86ba';
   document.getElementById('mf').addEventListener('submit',function(e){
     e.preventDefault();
